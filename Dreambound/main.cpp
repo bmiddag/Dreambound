@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include "player.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1080;
@@ -116,12 +117,18 @@ int main( int argc, char* args[] ) {
 		//Load media
 		if( !loadMedia() ) {
 			printf( "Failed to load media!\n" );
-		} else {	
+		} else {
 			//Main loop flag
 			bool quit = false;
 
 			//Event handler
 			SDL_Event e;
+
+			//Player
+			Player player;
+
+			player.x = SCREEN_WIDTH/2 - 458/2;
+			player.y = SCREEN_HEIGHT/2 - 496/2;
 
 			//While application is running
 			while( !quit ) {
@@ -130,13 +137,20 @@ int main( int argc, char* args[] ) {
 					//User requests quit
 					if( e.type == SDL_QUIT ) {
 						quit = true;
+					} else if( e.type == SDL_KEYDOWN ) {
+						switch( e.key.keysym.sym ) {
+						case SDLK_UP: player.y-=4; break;
+						case SDLK_DOWN: player.y+=4; break;
+						case SDLK_LEFT: player.x-=4; break;
+						case SDLK_RIGHT: player.x+=4; break;
+						}
 					}
 				}
 
 				//Apply the image stretched
 				SDL_Rect stretchRect;
-				stretchRect.x = SCREEN_WIDTH/2 - 458/2;
-				stretchRect.y = SCREEN_HEIGHT/2 - 496/2;
+				stretchRect.x = player.x;
+				stretchRect.y = player.y;
 				stretchRect.w = 458;
 				stretchRect.h = 496;
 				SDL_BlitScaled( gPNGSurface, NULL, gScreenSurface, &stretchRect );
