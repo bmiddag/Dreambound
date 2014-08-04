@@ -140,40 +140,51 @@ int main( int argc, char* args[] ) {
 			SDL_Event e;
 
 			//Player
-			Player player;
-
-			player.x = SCREEN_WIDTH/2 - 458/2;
-			player.y = SCREEN_HEIGHT/2 - 496/2;
+			Player player(SCREEN_WIDTH/2 - 458/2, SCREEN_HEIGHT/2 - 496/2);
 
 			//While application is running
 			while( !quit ) {
 				//Handle events on queue
 				while( SDL_PollEvent( &e ) != 0 ) {
 					//User requests quit
-					if( e.type == SDL_QUIT ) {
+					switch(e.type) {
+					case SDL_QUIT:
 						quit = true;
-					} else if( e.type == SDL_KEYDOWN ) {
-						switch( e.key.keysym.sym ) {
-						case SDLK_UP: player.y-=4; break;
-						case SDLK_DOWN: player.y+=4; break;
-						case SDLK_LEFT: player.x-=4; break;
-						case SDLK_RIGHT: player.x+=4; break;
+						break;
+					case SDL_KEYDOWN:
+						switch(e.key.keysym.sym) {
+						case SDLK_UP: player.setYVel(-0.5); break;
+						case SDLK_DOWN: player.setYVel(0.5); break;
+						case SDLK_LEFT: player.setXVel(-0.5); break;
+						case SDLK_RIGHT: player.setXVel(0.5); break;
 						}
+						break;
+					case SDL_KEYUP:
+						switch(e.key.keysym.sym) {
+						case SDLK_UP: player.setYVel(0); break;
+						case SDLK_DOWN: player.setYVel(0); break;
+						case SDLK_LEFT: player.setXVel(0); break;
+						case SDLK_RIGHT: player.setXVel(0); break;
+						}
+						break;
 					}
+
 				}
+				
+				player.step();
 
 				//Apply the image stretched
-				SDL_Rect player_rect;
-				player_rect.x = player.x;
-				player_rect.y = player.y;
-				player_rect.w = 458;
-				player_rect.h = 496;
+				SDL_Rect playerRect;
+				playerRect.x = player.getX();
+				playerRect.y = player.getY();
+				playerRect.w = 458;
+				playerRect.h = 496;
 			
 				//Clear screen
 				SDL_RenderClear( gRenderer );
 
 				//Render texture to screen
-				SDL_RenderCopy( gRenderer, gTexture, NULL, &player_rect );
+				SDL_RenderCopy( gRenderer, gTexture, NULL, &playerRect );
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );
