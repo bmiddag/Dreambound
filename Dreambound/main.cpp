@@ -17,7 +17,6 @@ int main()
 	sf::Text fpsText;
 	fpsText.setColor(sf::Color::White);
 	fpsText.setFont(testFont);
-	float lastTime = 0;
 	float currentTime;
 	float fps;
 	std::ostringstream ss;
@@ -32,8 +31,7 @@ int main()
 		}
 
 		currentTime = clock.restart().asSeconds();
-		fps = 1.f / (currentTime - lastTime);
-		lastTime = currentTime;
+		fps = 1.f / (currentTime);
 		ss << "FPS: " << fps;
 		fpsText.setString(ss.str());
 
