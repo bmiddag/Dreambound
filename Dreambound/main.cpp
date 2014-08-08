@@ -8,7 +8,12 @@ Every object has several functions that contain game logic.
 - begin step (called before all step functions)
 - step (happens every 1/60th of a second)
 - end step (called after all step functions are finished)
-- draw (called by a separate rendering thread every 1/60th of a second. The separate thread allows for frameskip if the framerate drops) */
+- draw (called by a separate rendering thread every 1/60th of a second. The separate thread allows for frameskip if the framerate drops)
+Every object can have different types. Examples are:
+- actor (any playable or non-playable character). Those have playable, friendly, or enemy subtype.
+- solid (platforms you can walk on). These should be defined by just vector lines.
+- particle (step logic might be done in draw function as it is entirely cosmetic)
+There's a master object for every "scene" (= every separate environment) that controls lists of actors, solids, etc. and unloads most of these at a scene change. */
 // TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
 int main()
@@ -48,7 +53,6 @@ int main()
 		// 4. Execute Step instructions (those with step events register to Step listener)
 		// 5. Execute End Step instructions (those with end step events register to End Step listener)
 
-		// 6. Calculate FPS
 		currentTime = clock.restart().asSeconds();
 		fps = 1.f / (currentTime);
 		ss << "FPS: " << fps;
