@@ -11,6 +11,7 @@ private:
 	// + list with all GUI instances to render
 
 public:
+	GUI();
 	GUI(sf::RenderWindow window);
 	bool init();
 	void render(); // renders gui and then calls render of renderer

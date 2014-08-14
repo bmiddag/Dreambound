@@ -12,6 +12,7 @@ private:
 	// + ordered list with all instances to render
 
 public:
+	Renderer();
 	Renderer(sf::RenderWindow canvas);
 	bool init();
 	void render();
