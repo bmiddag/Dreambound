@@ -16,6 +16,7 @@ public:
 	bool init();
 	void render(); // renders gui and then calls render of renderer
 	void cleanup();
+	void registerRender(Object object);
 };
 
 #endif

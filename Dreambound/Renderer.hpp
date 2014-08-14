@@ -7,7 +7,7 @@
 class Renderer {
 private:
 	sf::RenderWindow canvas; // or the surface to render on inside the window
-	GameModel gameModel;
+	Game game;
 	// ordered list with all instances to render
 
 public:
@@ -15,6 +15,7 @@ public:
 	bool init();
 	void render();
 	void cleanup();
+	void registerRender(Object object);
 };
 
 #endif
