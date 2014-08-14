@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "Object.hpp"
 
 class Renderer {
 private:
@@ -11,7 +12,7 @@ private:
 	// + ordered list with all instances to render
 
 public:
-	Renderer(GameModel gameModel, sf::RenderWindow canvas);
+	Renderer(sf::RenderWindow canvas);
 	bool init();
 	void render();
 	void cleanup();
