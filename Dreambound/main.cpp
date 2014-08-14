@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
+#include "Game.hpp"
 
 /* Game system planning:
 Every object has several functions that contain game logic.
@@ -33,6 +34,11 @@ int main() {
 	float currentTime;
 	float fps;
 	std::ostringstream ss;
+
+	// Create Game object
+	Game dreambound = Game();
+	// Create GUI object
+	GUI gui = GUI(&dreambound , window);
 
 	while (window.isOpen()) {
 		// Every 1/60th second:

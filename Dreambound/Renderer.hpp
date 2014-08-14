@@ -8,7 +8,7 @@
 class Renderer {
 private:
 	sf::RenderWindow canvas; // or the surface to render on inside the window
-	Game game;
+	Game *game;
 	// + ordered list with all instances to render
 
 public:

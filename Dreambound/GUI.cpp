@@ -1,4 +1,5 @@
 #include "GUI.hpp"
+#include "Game.hpp"
 
 //Basic GUI Constructor
 GUI::GUI(){
@@ -6,24 +7,24 @@ GUI::GUI(){
 }
 
 //GUI Constructor
-GUI::GUI(sf::RenderWindow window){
+GUI::GUI(Game *game, sf::RenderWindow window){
 
 }
 
-bool init(){
+bool GUI::init(){
 
 }
 
 // renders gui and then calls render of renderer
-void render(){
+void GUI::render(){
 
 }
 
-void cleanup(){
+void GUI::cleanup(){
 
 }
 
-void registerRender(Object object){
+void GUI::registerRender(Object object){
 
 }
 

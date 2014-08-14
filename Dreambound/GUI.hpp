@@ -12,7 +12,7 @@ private:
 
 public:
 	GUI();
-	GUI(sf::RenderWindow window);
+	GUI(Game *game, sf::RenderWindow window);
 	bool init();
 	void render(); // renders gui and then calls render of renderer
 	void cleanup();
