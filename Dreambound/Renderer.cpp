@@ -10,18 +10,18 @@ Renderer::Renderer(sf::RenderWindow canvas){
 
 }
 
-bool init(){
+bool Renderer::init(){
 
 }
 
-void render(){
+void Renderer::render(){
 
 }
 
-void cleanup(){
+void Renderer::cleanup(){
 
 }
 
-void registerRender(Object object){
+void Renderer::registerRender(Object object){
 
 }

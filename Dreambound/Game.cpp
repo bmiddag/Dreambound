@@ -5,43 +5,43 @@ Game::Game(){
 
 }
 
-bool init(){
+bool Game::init(){
 
 }
 
-void loop(){
+void Game::loop(){
 
 }
 
-void beginStep(){
+void Game::beginStep(){
 
 }
 
-void step(){
+void Game::step(){
 
 }
 
-void endStep(){
+void Game::endStep(){
 
 }
 
-void cleanup(){
+void Game::cleanup(){
 
 }
 
 
 // EVENTS
-void registerStep(Object object){
+void Game::registerStep(Object object){
 }
 
-void registerBeginStep(Object object){
+void Game::registerBeginStep(Object object){
 }
 
-void registerEndStep(Object object){
+void Game::registerEndStep(Object object){
 }
 
-void registerChangeListener(Object object){
+void Game::registerChangeListener(Object object){
 }
 
-void registerRender(Object object){
+void Game::registerRender(Object object){
 }
