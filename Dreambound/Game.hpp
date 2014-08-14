@@ -9,9 +9,9 @@ private:
 	sf::RenderWindow window;
 	GUI gui;
 	Renderer renderer;
-	// ordered list with all begin step listeners
-	// ordered list with all step listeners
-	// ordered list with all end step listeners
+	// + ordered list with all begin step listeners
+	// + ordered list with all step listeners
+	// + ordered list with all end step listeners
 
 	void fireStateChanged(); // for change events
 
@@ -30,7 +30,6 @@ public:
 	void registerEndStep(Object object);
 	void registerChangeListener(Object object);
 	void registerRender(Object object); // calls register render in renderer
-	// methods to register and notify listeners
 };
 
 #endif

@@ -9,7 +9,7 @@ class GUI {
 private:
 	sf::RenderWindow window;
 	GameModel gameModel;
-	// list with all GUI instances to render
+	// + list with all GUI instances to render
 
 public:
 	GUI(GameModel gameModel, sf::RenderWindow window);
