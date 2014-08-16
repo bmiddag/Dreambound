@@ -2,9 +2,10 @@
 #define RENDERER_HPP
 
 #include <SFML/Graphics.hpp>
-#include "Game.hpp"
 #include "Object.hpp"
 #include <list>
+
+class Game;
 
 class Renderer {
 private:

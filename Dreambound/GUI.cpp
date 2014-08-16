@@ -25,6 +25,7 @@ bool GUI::init() {
 	// TODO: When releasing a non-dev version, all that remains is to change canvas to full window.
 	renderer = Renderer(window);
 	// TODO: Create rest of the map editor GUI
+	return true;
 }
 
 // renders gui and then calls render of renderer

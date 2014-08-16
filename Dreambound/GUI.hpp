@@ -2,7 +2,6 @@
 #define GUI_HPP
 
 #include <SFML/Graphics.hpp>
-#include "Game.hpp"
 #include "Renderer.hpp"
 #include "Object.hpp"
 #include <list>

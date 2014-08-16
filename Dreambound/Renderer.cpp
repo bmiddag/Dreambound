@@ -16,7 +16,7 @@ Renderer::Renderer(sf::RenderWindow* canvas) {
 }
 
 bool Renderer::init() {
-
+	return true;
 }
 
 void Renderer::render() {

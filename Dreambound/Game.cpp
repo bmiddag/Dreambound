@@ -6,7 +6,7 @@ Game::Game() {
 }
 
 bool Game::init() {
-
+	return true;
 }
 
 void Game::loop() {
