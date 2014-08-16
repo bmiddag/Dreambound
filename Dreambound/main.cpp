@@ -38,7 +38,7 @@ int main() {
 	// Create Game object
 	Game dreambound = Game();
 	// Create GUI object
-	GUI gui = GUI(&dreambound , window);
+	GUI gui = GUI(&dreambound ,&window);
 
 	while (window.isOpen()) {
 		// Every 1/60th second:

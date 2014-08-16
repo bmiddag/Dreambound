@@ -1,14 +1,15 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
+// Game object abstract class
 class Object {
 public:
-	Object();
-	~Object();
-	void beginStep();
-	void step();
-	void endStep();
-	void render();
+	Object() {};
+	virtual ~Object() {};
+	virtual void beginStep() {};
+	virtual void step() {};
+	virtual void endStep() {};
+	virtual void render() {};
 };
 
 #endif
