@@ -18,7 +18,7 @@ There's a master object for every "scene" (= every separate environment) that co
 // TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
 	sf::CircleShape shape(240.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -48,10 +48,8 @@ int main() {
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		// GAME LOGIC (speed can be configured, pass supposed fps to all objects!)
-		// Execute Begin Step instructions (those with begin step events register to Begin Step listener)
-		// Execute Step instructions (those with step events register to Step listener)
-		// Execute End Step instructions (those with end step events register to End Step listener)
+
+		dreambound.loop();
 
 		currentTime = clock.restart().asSeconds();
 		fps = 1.f / (currentTime);
