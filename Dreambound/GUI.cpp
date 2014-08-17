@@ -31,7 +31,7 @@ bool GUI::init() {
 // renders gui and then calls render of renderer
 void GUI::render() {
 	for (std::list<Object*>::iterator iterator = renderList.begin(), end = renderList.end(); iterator != end; ++iterator) {
-		(*iterator)->render();
+		(*iterator)->render(window);
 	}
 	renderer.render();
 }

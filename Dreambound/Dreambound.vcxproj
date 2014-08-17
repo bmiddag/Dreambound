@@ -75,9 +75,11 @@
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Bol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChangeListener.hpp" />
+    <ClInclude Include="Bol.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GUI.hpp" />
     <ClInclude Include="Object.hpp" />

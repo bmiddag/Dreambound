@@ -2,7 +2,7 @@
 
 // Game constructor
 Game::Game() {
-
+	
 }
 
 bool Game::init() {

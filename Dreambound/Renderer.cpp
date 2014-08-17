@@ -21,7 +21,7 @@ bool Renderer::init() {
 
 void Renderer::render() {
 	for (std::list<Object*>::iterator iterator = renderList.begin(), end = renderList.end(); iterator != end; ++iterator) {
-		(*iterator)->render();
+		(*iterator)->render(canvas);
 	}
 }
 

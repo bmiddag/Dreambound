@@ -1,6 +1,8 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
+#include <SFML/Graphics.hpp>
+
 // Game object abstract class
 class Object {
 public:
@@ -9,7 +11,7 @@ public:
 	virtual void beginStep() {};
 	virtual void step() {};
 	virtual void endStep() {};
-	virtual void render() {};
+	virtual void render(sf::RenderWindow* canvas) {};
 };
 
 #endif

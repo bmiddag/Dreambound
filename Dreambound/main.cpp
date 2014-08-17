@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include "Game.hpp"
+#include "Bol.hpp"
 
 /* Game system planning:
 Every object has several functions that contain game logic.
@@ -19,9 +20,10 @@ There's a master object for every "scene" (= every separate environment) that co
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
-	sf::CircleShape shape(240.f);
-	shape.setFillColor(sf::Color::Green);
-
+	// sf::CircleShape shape(240.f);
+	// shape.setFillColor(sf::Color::Green);
+	// testbol!
+	Bol feveraerBol = Bol(240.f, sf::Color::Green);
 	sf::Font testFont;
 	if (!testFont.loadFromFile("arial.ttf")) {
 		return 0;
@@ -40,6 +42,9 @@ int main() {
 	// Create GUI object
 	GUI gui = GUI(&dreambound ,&window);
 
+	dreambound.registerRender(&feveraerBol);
+	dreambound.registerStep(&feveraerBol);
+
 	while (window.isOpen()) {
 		// Every 1/60th second:
 		// Handle window events here
@@ -57,7 +62,7 @@ int main() {
 		fpsText.setString(ss.str());
 
 		window.clear();
-		window.draw(shape);
+		// window.draw(shape);
 		window.draw(fpsText);
 		window.display();
 		ss.str(std::string());
