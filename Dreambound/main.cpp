@@ -54,6 +54,7 @@ int main() {
 				window.close();
 		}
 
+		window.clear();
 		dreambound.loop();
 
 		currentTime = clock.restart().asSeconds();
@@ -61,8 +62,6 @@ int main() {
 		ss << "FPS: " << fps;
 		fpsText.setString(ss.str());
 
-		window.clear();
-		// window.draw(shape);
 		window.draw(fpsText);
 		window.display();
 		ss.str(std::string());
