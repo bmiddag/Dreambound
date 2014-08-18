@@ -22,8 +22,6 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
 	// sf::CircleShape shape(240.f);
 	// shape.setFillColor(sf::Color::Green);
-	// testbol!
-	Bol feveraerBol = Bol(240.f, sf::Color::Green);
 	sf::Font testFont;
 	if (!testFont.loadFromFile("arial.ttf")) {
 		return 0;
@@ -42,6 +40,8 @@ int main() {
 	// Create GUI object
 	GUI gui = GUI(&dreambound ,&window);
 
+	// testbol!
+	Bol feveraerBol = Bol(240.f, sf::Color::Green);
 	dreambound.registerRender(&feveraerBol);
 	dreambound.registerStep(&feveraerBol);
 
