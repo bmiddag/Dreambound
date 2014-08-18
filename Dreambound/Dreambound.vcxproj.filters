@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{cbb10bf6-12fd-4025-918e-0a17108e3e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Test">
+      <UniqueIdentifier>{b49a9fa8-5fe7-45f6-bbd3-0972e6f76426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{352635dd-3d37-4b30-a2e5-e67004fec23f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Test">
+      <UniqueIdentifier>{6cfcadc2-f0b6-417a-a4a9-eecef83e4b49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -28,7 +40,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bol.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSCounter.cpp">
+      <Filter>Source Files\Objects\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,14 +56,17 @@
     <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Object.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChangeListener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bol.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Objects\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSCounter.hpp">
+      <Filter>Header Files\Objects\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.hpp">
+      <Filter>Header Files\Objects\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FPSCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -80,6 +81,7 @@
   <ItemGroup>
     <ClInclude Include="ChangeListener.hpp" />
     <ClInclude Include="Bol.hpp" />
+    <ClInclude Include="FPSCounter.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GUI.hpp" />
     <ClInclude Include="Object.hpp" />

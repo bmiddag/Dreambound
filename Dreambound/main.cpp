@@ -2,6 +2,7 @@
 #include <sstream>
 #include "Game.hpp"
 #include "Bol.hpp"
+#include "FPSCounter.hpp"
 
 /* Game system planning:
 Every object has several functions that contain game logic.
@@ -27,23 +28,21 @@ int main() {
 		return 0;
 	}
 
-	sf::Clock clock;
-	sf::Text fpsText;
-	fpsText.setColor(sf::Color::White);
-	fpsText.setFont(testFont);
-	float currentTime;
-	float fps;
-	std::ostringstream ss;
-
 	// Create Game object
 	Game dreambound = Game();
 	// Create GUI object
 	GUI gui = GUI(&dreambound ,&window);
 	
 	// TEST: Letting a circle object draw itself - TEST SUCCESFUL
-	Bol feveraerBol = Bol(240.f, sf::Color::Green);
-	dreambound.registerRender(&feveraerBol);
-	dreambound.registerStep(&feveraerBol);
+	// Bol feveraerBol = Bol(240.f, sf::Color::Green);
+	// dreambound.registerRender(&feveraerBol);
+	// dreambound.registerStep(&feveraerBol);
+
+	//TEST: Showing FPS Text with FPSCounter object
+	FPSCounter counter = FPSCounter(sf::Color::White);
+	dreambound.registerRender(&counter);
+	dreambound.registerEndStep(&counter);
+
 
 	while (window.isOpen()) {
 		// Every 1/60th second:
@@ -56,15 +55,7 @@ int main() {
 
 		window.clear();
 		dreambound.loop();
-
-		currentTime = clock.restart().asSeconds();
-		fps = 1.f / (currentTime);
-		ss << "FPS: " << fps;
-		fpsText.setString(ss.str());
-
-		window.draw(fpsText);
 		window.display();
-		ss.str(std::string());
 	}
 
 	return 0;
