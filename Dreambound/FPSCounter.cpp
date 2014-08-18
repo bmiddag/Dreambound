@@ -2,8 +2,6 @@
 
 FPSCounter::FPSCounter(sf::Color color) {
 	fpsText.setColor(color);
-
-	sf::Font testFont;
 	if (!testFont.loadFromFile("arial.ttf")) {
 		// moeitemeter += 36
 	}

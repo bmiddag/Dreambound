@@ -10,6 +10,7 @@ private:
 	int y;
 	sf::Clock clock;
 	sf::Text fpsText;
+	sf::Font testFont;
 	float currentTime;
 	float fps;
 	std::ostringstream ss;

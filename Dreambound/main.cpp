@@ -23,22 +23,18 @@ int main() {
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
 
-	sf::Font testFont;
-	if (!testFont.loadFromFile("arial.ttf")) {
-		return 0;
-	}
-
 	// Create Game object
 	Game dreambound = Game();
+
 	// Create GUI object
 	GUI gui = GUI(&dreambound ,&window);
 	
-	// TEST: Letting a circle object draw itself - TEST SUCCESFUL
-	// Bol feveraerBol = Bol(240.f, sf::Color::Green);
-	// dreambound.registerRender(&feveraerBol);
-	// dreambound.registerStep(&feveraerBol);
+	// TEST: Letting a circle object draw itself - TEST SUCCESSFUL
+	Bol feveraerBol = Bol(240.f, sf::Color::Green);
+	dreambound.registerRender(&feveraerBol);
+	dreambound.registerStep(&feveraerBol);
 
-	//TEST: Showing FPS Text with FPSCounter object
+	// TEST: Showing FPS Text with FPSCounter object - TEST SUCCESSFUL
 	FPSCounter counter = FPSCounter(sf::Color::White);
 	dreambound.registerRender(&counter);
 	dreambound.registerEndStep(&counter);
