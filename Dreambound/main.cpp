@@ -19,9 +19,9 @@ There's a master object for every "scene" (= every separate environment) that co
 // TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
 int main() {
+	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
-	// sf::CircleShape shape(240.f);
-	// shape.setFillColor(sf::Color::Green);
+
 	sf::Font testFont;
 	if (!testFont.loadFromFile("arial.ttf")) {
 		return 0;
@@ -39,8 +39,8 @@ int main() {
 	Game dreambound = Game();
 	// Create GUI object
 	GUI gui = GUI(&dreambound ,&window);
-
-	// testbol!
+	
+	// TEST: Letting a circle object draw itself - TEST SUCCESFUL
 	Bol feveraerBol = Bol(240.f, sf::Color::Green);
 	dreambound.registerRender(&feveraerBol);
 	dreambound.registerStep(&feveraerBol);
