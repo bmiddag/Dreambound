@@ -22,6 +22,7 @@ There's a master object for every "scene" (= every separate environment) that co
 int main() {
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
+	window.setFramerateLimit(60);
 
 	// Create Game object
 	Game dreambound = Game();
