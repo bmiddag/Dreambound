@@ -68,5 +68,8 @@
     <ClInclude Include="Object.hpp">
       <Filter>Header Files\Objects\Test</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
