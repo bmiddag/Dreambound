@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "GUI.hpp"
 #include "Object.hpp"
+#include "Scene.hpp"
 #include "ChangeListener.hpp"
 #include <list>
 
@@ -12,6 +13,7 @@ private:
 	sf::RenderWindow* window;
 	GUI* gui;
 	Renderer* renderer;
+	Scene* scene;
 	std::list<Object*> beginStepList;
 	std::list<Object*> stepList;
 	std::list<Object*> endStepList;
