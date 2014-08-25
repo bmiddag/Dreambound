@@ -20,3 +20,7 @@ void FPSCounter::endStep() {
 void FPSCounter::render(sf::RenderWindow* canvas) {
 	canvas->draw(fpsText);
 }
+
+unsigned char FPSCounter::getEvents() {
+	return GameEvent::EndStep | GameEvent::Render;
+}

@@ -2,10 +2,9 @@
 #define SCENE_HPP
 
 #include "Object.hpp"
+#include "Game.hpp"
 #include "ChangeListener.hpp"
 #include <list>
-
-class Game;
 
 class Scene: public ChangeListener {
 private:
@@ -16,16 +15,17 @@ private:
 	void fireStateChanged(); // for change events
 
 public:
-	Scene();
+	Scene(Game* game);
+	~Scene();
 	bool init();
-	void load(bool loadFixed);
-	void unload(bool unloadFixed);
+	bool loadScene(std::string sceneName);
+	bool loadFixed();
+	void unloadScene();
+	void unloadFixed();
 	void cleanup();
 
-	// Event listener registration
+	// Event listener registration and unregistration
 	void registerChangeListener(ChangeListener* changeListener);
-
-	// Event listener unregistration
 	void unregisterChangeListener(ChangeListener* changeListener);
 
 	// State changed

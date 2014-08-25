@@ -102,6 +102,10 @@ void Game::registerWindow(sf::RenderWindow* window) {
 	this->window = window;
 }
 
+void Game::registerScene(Scene* scene) {
+	this->scene = scene;
+}
+
 void Game::unregisterRenderer() {
 	this->renderer = NULL;
 }
@@ -112,4 +116,8 @@ void Game::unregisterGUI() {
 
 void Game::unregisterWindow() {
 	this->window = NULL;
+}
+
+void Game::unregisterScene() {
+	this->scene = NULL;
 }

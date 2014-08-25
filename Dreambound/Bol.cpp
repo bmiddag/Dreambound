@@ -21,3 +21,7 @@ void Bol::step() {
 void Bol::render(sf::RenderWindow* canvas) {
 	canvas->draw(shape);
 }
+
+unsigned char Bol::getEvents() {
+	return GameEvent::Step | GameEvent::Render;
+}

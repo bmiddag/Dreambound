@@ -15,5 +15,6 @@ public:
 	Bol(double radius, sf::Color color);
 	virtual void step();
 	virtual void render(sf::RenderWindow* canvas);
+	virtual unsigned char getEvents();
 };
 #endif

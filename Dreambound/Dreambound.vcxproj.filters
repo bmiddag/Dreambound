@@ -45,6 +45,9 @@
     <ClCompile Include="FPSCounter.cpp">
       <Filter>Source Files\Objects\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.hpp">
@@ -65,10 +68,13 @@
     <ClInclude Include="FPSCounter.hpp">
       <Filter>Header Files\Objects\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Object.hpp">
-      <Filter>Header Files\Objects\Test</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.hpp">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

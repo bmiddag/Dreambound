@@ -77,10 +77,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Bol.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChangeListener.hpp" />
     <ClInclude Include="Bol.hpp" />
+    <ClInclude Include="Config.hpp" />
     <ClInclude Include="FPSCounter.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GUI.hpp" />

@@ -4,9 +4,10 @@
 #include <SFML/Graphics.hpp>
 #include "GUI.hpp"
 #include "Object.hpp"
-#include "Scene.hpp"
 #include "ChangeListener.hpp"
 #include <list>
+
+class Scene;
 
 class Game {
 private:
@@ -47,9 +48,11 @@ public:
 	void registerRenderer(Renderer* renderer);
 	void registerGUI(GUI* gui);
 	void registerWindow(sf::RenderWindow* window);
+	void registerScene(Scene* scene);
 	void unregisterRenderer();
 	void unregisterGUI();
 	void unregisterWindow();
+	void unregisterScene();
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef FPSCounter_HPP
-#define FPSCounter_HPP
+#ifndef FPSCOUNTER_HPP
+#define FPSCOUNTER_HPP
 
 #include <sstream>
 #include "Object.hpp"
@@ -18,5 +18,6 @@ public:
 	FPSCounter(sf::Color color);
 	virtual void endStep();
 	virtual void render(sf::RenderWindow* canvas);
+	virtual unsigned char getEvents();
 };
 #endif

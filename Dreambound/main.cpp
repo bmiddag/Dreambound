@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include "Game.hpp"
+#include "Scene.hpp"
 #include "Bol.hpp"
 #include "FPSCounter.hpp"
 
@@ -19,6 +20,8 @@ Every object can have different types. Examples are:
 There's a master object for every "scene" (= every separate environment) that controls lists of actors, solids, etc. and unloads most of these at a scene change. */
 // TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
+// TODO: replace all pointer logic with smart pointers: http://msdn.microsoft.com/en-us/library/hh279674.aspx
+
 int main() {
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
@@ -28,17 +31,11 @@ int main() {
 	Game dreambound = Game();
 
 	// Create GUI object
-	GUI gui = GUI(&dreambound ,&window);
-	
-	// TEST: Letting a circle object draw itself - TEST SUCCESSFUL
-	Bol feveraerBol = Bol(240.f, sf::Color::Green);
-	dreambound.registerRender(&feveraerBol);
-	dreambound.registerStep(&feveraerBol);
+	GUI gui = GUI(&dreambound, &window);
 
-	// TEST: Showing FPS Text with FPSCounter object - TEST SUCCESSFUL
-	FPSCounter counter = FPSCounter(sf::Color::White);
-	dreambound.registerRender(&counter);
-	dreambound.registerEndStep(&counter);
+	// Create Scene object
+	Scene scene = Scene(&dreambound);
+	scene.loadScene("Yay");
 
 
 	while (window.isOpen()) {
@@ -55,5 +52,6 @@ int main() {
 		window.display();
 	}
 
+	scene.cleanup();
 	return 0;
 }
