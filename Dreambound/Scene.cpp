@@ -35,48 +35,46 @@ bool Scene::init() {
 bool Scene::loadScene(std::string sceneName) {
 	// TODO: First, load the appropriate file containing object lists, according to the provided scene name.
 	// For every object: load, register to game object, and add to sceneObjectList
-	Object* object = new Bol(240.f, sf::Color::Green);
-	if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object);
-	if (object->getEvents() & GameEvent::Step) game->registerStep(object);
-	if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object);
-	if (object->getEvents() & GameEvent::Render) game->registerRender(object);
-	sceneObjectList.push_back(object);
+	std::unique_ptr<Object> object(new Bol(240.f, sf::Color::Green));
+	if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object.get());
+	if (object->getEvents() & GameEvent::Step) game->registerStep(object.get());
+	if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object.get());
+	if (object->getEvents() & GameEvent::Render) game->registerRender(object.get());
+	sceneObjectList.push_back(std::move(object));
 
 	return true;
 }
 
 bool Scene::loadFixed() {
 	// TODO: For every object: load, register to game object, and add to fixedObjectList
-	Object* object = new FPSCounter(sf::Color::White);
-	if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object);
-	if (object->getEvents() & GameEvent::Step) game->registerStep(object);
-	if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object);
-	if (object->getEvents() & GameEvent::Render) game->registerRender(object);
-	sceneObjectList.push_back(object);
+	std::unique_ptr<Object> object(new FPSCounter(sf::Color::White));
+	if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object.get());
+	if (object->getEvents() & GameEvent::Step) game->registerStep(object.get());
+	if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object.get());
+	if (object->getEvents() & GameEvent::Render) game->registerRender(object.get());
+	sceneObjectList.push_back(std::move(object));
 
 	return true;
 }
 
 void Scene::unloadScene() {
 	while (!sceneObjectList.empty()) {
-		Object* object = sceneObjectList.back();
+		Object* object = sceneObjectList.back().get();
 		if (object->getEvents() & GameEvent::BeginStep) game->unregisterBeginStep(object);
 		if (object->getEvents() & GameEvent::Step) game->unregisterStep(object);
 		if (object->getEvents() & GameEvent::EndStep) game->unregisterEndStep(object);
 		if (object->getEvents() & GameEvent::Render) game->unregisterRender(object);
-		delete object;
 		sceneObjectList.pop_back();
 	}
 }
 
 void Scene::unloadFixed() {
 	while (!fixedObjectList.empty()) {
-		Object* object = fixedObjectList.back();
+		Object* object = fixedObjectList.back().get();
 		if (object->getEvents() & GameEvent::BeginStep) game->unregisterBeginStep(object);
 		if (object->getEvents() & GameEvent::Step) game->unregisterStep(object);
 		if (object->getEvents() & GameEvent::EndStep) game->unregisterEndStep(object);
 		if (object->getEvents() & GameEvent::Render) game->unregisterRender(object);
-		delete object;
 		fixedObjectList.pop_back();
 	}
 }

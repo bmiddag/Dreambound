@@ -5,12 +5,13 @@
 #include "Game.hpp"
 #include "ChangeListener.hpp"
 #include <list>
+#include <memory>
 
 class Scene: public ChangeListener {
 private:
 	Game* game;
-	std::list<Object*> fixedObjectList; // Contains all game objects that should remain in memory across scene changes
-	std::list<Object*> sceneObjectList; // Contains all scene-specific objects
+	std::list<std::unique_ptr<Object>> fixedObjectList; // Contains all game objects that should remain in memory across scene changes
+	std::list<std::unique_ptr<Object>> sceneObjectList; // Contains all scene-specific objects
 	std::list<ChangeListener*> changeListenerList;
 	void fireStateChanged(); // for change events
 

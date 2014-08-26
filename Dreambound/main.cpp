@@ -20,7 +20,7 @@ Every object can have different types. Examples are:
 There's a master object for every "scene" (= every separate environment) that controls lists of actors, solids, etc. and unloads most of these at a scene change. */
 // TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
-// TODO: replace all pointer logic with smart pointers: http://msdn.microsoft.com/en-us/library/hh279674.aspx
+// Note: instead of using "new/delet" memory management, use smart pointers: http://msdn.microsoft.com/en-us/library/hh279674.aspx
 
 int main() {
 	// Create the main window
@@ -52,6 +52,5 @@ int main() {
 		window.display();
 	}
 
-	scene.cleanup();
 	return 0;
 }
