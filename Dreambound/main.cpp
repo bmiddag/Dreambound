@@ -43,6 +43,7 @@ int main() {
 		// Handle window events here
 		sf::Event event;
 		while (window.pollEvent(event)) {
+			gui.handleEvent(event);
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}

@@ -2,6 +2,7 @@
 #define GUI_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFGUI/SFGUI.hpp>
 #include "Renderer.hpp"
 #include "Object.hpp"
 #include <list>
@@ -12,6 +13,11 @@ private:
 	Game* game;
 	std::list<Object*> renderList;
 	Renderer renderer;
+	sfg::SFGUI sfgui;
+	sfg::Window::Ptr GUIWindow;
+	sfg::Button::Ptr button;
+	sfg::Desktop desktop;
+	sf::Clock clock;
 
 public:
 	GUI();
@@ -21,6 +27,8 @@ public:
 	void cleanup();
 	void registerRender(Object* object);
 	void unregisterRender(Object* object);
+	void handleEvent(sf::Event event);
+	void onButtonClick();
 };
 
 #endif

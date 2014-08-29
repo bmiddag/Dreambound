@@ -25,6 +25,13 @@ bool GUI::init() {
 	// TODO: When releasing a non-dev version, all that remains is to change canvas to full window.
 	renderer = Renderer(window);
 	// TODO: Create rest of the map editor GUI
+	// UNDER THIS LINE IS ALL TEST CODE
+	button = sfg::Button::Create("Hello");
+	button->GetSignal(sfg::Button::OnLeftClick).Connect( std::bind(&GUI::onButtonClick, this) );
+	GUIWindow = sfg::Window::Create();
+	GUIWindow->SetTitle("Hello World example");
+	GUIWindow->Add(button);
+	desktop.Add(GUIWindow);
 	return true;
 }
 
@@ -34,6 +41,8 @@ void GUI::render() {
 		(*iterator)->render(window);
 	}
 	renderer.render();
+	desktop.Update(clock.restart().asSeconds());
+	sfgui.Display(*window);
 }
 
 void GUI::cleanup() {
@@ -48,3 +57,11 @@ void GUI::unregisterRender(Object* object) {
 	renderList.remove(object);
 }
 
+void GUI::handleEvent(sf::Event event) {
+	desktop.HandleEvent(event);
+}
+
+// UNDER THIS LINE IS ALL TEST CODE
+void GUI::onButtonClick() {
+	button->SetLabel("World");
+}
