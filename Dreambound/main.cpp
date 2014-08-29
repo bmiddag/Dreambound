@@ -2,8 +2,9 @@
 #include <sstream>
 #include "Game.hpp"
 #include "Scene.hpp"
-#include "Bol.hpp"
-#include "FPSCounter.hpp"
+
+// TODO: SFGUI integration (GUI class)
+// TODO: Box2D integration (Scene has multiple layers)
 
 /* Game system planning:
 Every object has several functions that contain game logic.
@@ -18,13 +19,12 @@ Every object can have different types. Examples are:
 - solid (platforms you can walk on). These should be defined by just vector lines.
 - particle (step logic might be done in draw function as it is entirely cosmetic)
 There's a master object for every "scene" (= every separate environment) that controls lists of actors, solids, etc. and unloads most of these at a scene change. */
-// TODO: After implementing the game system, remove FPS counter from this file and add as separate game object
 
-// Note: instead of using "new/delet" memory management, use smart pointers: http://msdn.microsoft.com/en-us/library/hh279674.aspx
+// Note: instead of using "new/delete" memory management, use smart pointers: http://msdn.microsoft.com/en-us/library/hh279674.aspx
 
 int main() {
 	// Create the main window
-	sf::RenderWindow window(sf::VideoMode(1080, 720), "Dreambound");
+	sf::RenderWindow window(sf::VideoMode(1080, 720, 32), "Dreambound");
 	window.setFramerateLimit(60);
 
 	// Create Game object
