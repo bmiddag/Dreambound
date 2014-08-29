@@ -25,12 +25,17 @@ bool GUI::init() {
 	// TODO: When releasing a non-dev version, all that remains is to change canvas to full window.
 	renderer = Renderer(window);
 	// TODO: Create rest of the map editor GUI
-	// UNDER THIS LINE IS ALL TEST CODE
-	button = sfg::Button::Create("Hello");
+
+	// Create layout
+	button = sfg::Button::Create("Click this");
 	button->GetSignal(sfg::Button::OnLeftClick).Connect( std::bind(&GUI::onButtonClick, this) );
-	GUIWindow = sfg::Window::Create();
-	GUIWindow->SetTitle("Hello World example");
+
+	// Create window
+	GUIWindow = sfg::Window::Create(sfg::Window::Style::BACKGROUND);
+	GUIWindow->SetTitle("Level editor stuff");
 	GUIWindow->Add(button);
+	GUIWindow->SetRequisition(sf::Vector2f(150.f, SCREEN_HEIGHT));
+	GUIWindow->SetPosition(sf::Vector2f(SCREEN_WIDTH-150.f, 0.f));
 	desktop.Add(GUIWindow);
 	return true;
 }
@@ -63,5 +68,9 @@ void GUI::handleEvent(sf::Event event) {
 
 // UNDER THIS LINE IS ALL TEST CODE
 void GUI::onButtonClick() {
-	button->SetLabel("World");
+	if (button->GetLabel() == "You clicked!\nNow click again!") {
+		button->SetLabel("DROOLIE WAS\n      HERE");
+	} else {
+		button->SetLabel("You clicked!\nNow click again!");
+	}
 }

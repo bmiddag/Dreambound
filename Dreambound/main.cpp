@@ -2,6 +2,7 @@
 #include <sstream>
 #include "Game.hpp"
 #include "Scene.hpp"
+#include "Config.hpp"
 
 // TODO: SFGUI integration (GUI class)
 // TODO: Box2D integration (Scene has multiple layers)
@@ -24,7 +25,7 @@ There's a master object for every "scene" (= every separate environment) that co
 
 int main() {
 	// Create the main window
-	sf::RenderWindow window(sf::VideoMode(1080, 720, 32), "Dreambound");
+	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "Dreambound", sf::Style::Titlebar | sf::Style::Close);
 	window.setFramerateLimit(60);
 
 	// Create Game object
