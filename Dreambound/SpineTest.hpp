@@ -8,12 +8,12 @@
 class SpineTest : public Object {
 private:
 	
-	Atlas* atlas;
-	SkeletonBounds* bounds;
-	SkeletonData* skeletonData;
-	AnimationStateData* stateData;
+	spAtlas* atlas;
+	spSkeletonBounds* bounds;
+	spSkeletonData* skeletonData;
+	spAnimationStateData* stateData;
 	std::unique_ptr<spine::SkeletonDrawable> drawable;
-	Skeleton* skeleton;
+	spSkeleton* skeleton;
 
 	int x;
 	int y;

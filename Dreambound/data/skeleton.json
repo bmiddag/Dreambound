@@ -167,7 +167,7 @@
 	{ "name": "blue_head_hair_9", "bone": "bone_hair_9", "attachment": "actors/Blue/blue_head_hair_9" },
 	{ "name": "blue_head_hair_10", "bone": "bone_hair_10", "attachment": "actors/Blue/blue_head_hair_10" },
 	{ "name": "blue_head_hair_11", "bone": "bone_hair_11", "attachment": "actors/Blue/blue_head_hair_11" },
-	{ "name": "blue_head_hair_heli_base", "bone": "bone_hair_heli", "attachment": "actors/Blue/blue_head_hair_heli_base" },
+	{ "name": "blue_head_hair_heli_base", "bone": "bone_hair_heli" },
 	{ "name": "blue_head_hair_heli", "bone": "bone_hair_heli" },
 	{ "name": "blue_footl_bendable_toes", "bone": "bone_footl_bendable_toes" },
 	{ "name": "blue_footl", "bone": "bone_footl", "attachment": "actors/Blue/blue_footl_normal" },
