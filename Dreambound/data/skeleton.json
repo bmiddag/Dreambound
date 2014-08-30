@@ -1155,6 +1155,54 @@
 					},
 					{ "time": 2, "angle": -7.11 }
 				]
+			},
+			"bone_footl": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			},
+			"bone_footr": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 }
+				]
+			}
+		},
+		"slots": {
+			"blue_footl": {
+				"attachment": [
+					{ "time": 0, "name": "actors/Blue/blue_footl_normal" }
+				]
+			},
+			"blue_footl_bendable_toes": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"blue_footr": {
+				"attachment": [
+					{ "time": 0, "name": "actors/Blue/blue_footr_normal" }
+				]
+			},
+			"blue_footr_bendable_toes": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"blue_handl": {
+				"attachment": [
+					{ "time": 0, "name": "actors/Blue/blue_handl_normal" }
+				]
+			},
+			"blue_handr": {
+				"attachment": [
+					{ "time": 0, "name": "actors/Blue/blue_handr_normal" }
+				]
 			}
 		}
 	},

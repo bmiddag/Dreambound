@@ -5,7 +5,7 @@ SpineTest::SpineTest() {
 	// Load atlas, skeleton, and animations.
 	atlas = spAtlas_createFromFile("data/skeleton.atlas", 0);
 	spSkeletonJson* json = spSkeletonJson_create(atlas);
-	json->scale = 0.5f;
+	json->scale = 0.4f;
 	skeletonData = spSkeletonJson_readSkeletonDataFile(json, "data/skeleton.json");
 	if (!skeletonData) {
 		printf("%s\n", json->error);
@@ -17,11 +17,11 @@ SpineTest::SpineTest() {
 	// Configure mixing.
 	stateData = spAnimationStateData_create(skeletonData);
 	spAnimationStateData_setMixByName(stateData, "anm_idle", "anm_idle", 0.2f);
-	spAnimationStateData_setMixByName(stateData, "anm_run", "anm_idle", 0.2f);
+	spAnimationStateData_setMixByName(stateData, "anm_run", "anm_idle", 0.5f);
 
 	std::unique_ptr<spine::SkeletonDrawable> skeletonDrawable(new spine::SkeletonDrawable(skeletonData, stateData));
 	drawable = std::move(skeletonDrawable);
-	drawable->timeScale = 2;
+	drawable->timeScale = 2.5;
 
 	skeleton = drawable->skeleton;
 	skeleton->flipX = false;
@@ -46,14 +46,15 @@ SpineTest::~SpineTest() {
 
 void SpineTest::step() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		x -= 15;
+		x -= 8;
 		skeleton->flipX = true;
-	} else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		x += 15;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		x += 8;
 		skeleton->flipX = false;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -= 15;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y += 15;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -= 8;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y += 8;
 
 	// Handle animations
 	TrackEntry* entry = spAnimationState_getCurrent(drawable->state, 0);
