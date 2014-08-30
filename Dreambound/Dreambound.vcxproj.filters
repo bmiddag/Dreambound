@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Objects\Test">
       <UniqueIdentifier>{6cfcadc2-f0b6-417a-a4a9-eecef83e4b49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Spine">
+      <UniqueIdentifier>{ad525819-fb0b-4d80-b7a8-d8ec188cd8dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -47,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpineTest.cpp">
+      <Filter>Source Files\Objects\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="spine-sfml.cpp">
+      <Filter>Source Files\Spine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="Config.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpineTest.hpp">
+      <Filter>Header Files\Objects\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

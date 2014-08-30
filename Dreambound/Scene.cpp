@@ -3,6 +3,7 @@
 // Objects: Find a way to remove these...
 #include "Bol.hpp"
 #include "FPSCounter.hpp"
+#include "SpineTest.hpp"
 
 // PRIVATE
 
@@ -35,13 +36,21 @@ bool Scene::init() {
 bool Scene::loadScene(std::string sceneName) {
 	// TODO: First, load the appropriate file containing object lists, according to the provided scene name.
 	// For every object: load, register to game object, and add to sceneObjectList
-	std::unique_ptr<Object> object(new Bol(240.f, sf::Color::Green));
-	if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object.get());
-	if (object->getEvents() & GameEvent::Step) game->registerStep(object.get());
-	if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object.get());
-	if (object->getEvents() & GameEvent::Render) game->registerRender(object.get());
-	sceneObjectList.push_back(std::move(object));
-
+		{
+			std::unique_ptr<Object> object(new Bol(240.f, sf::Color::Green));
+			if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object.get());
+			if (object->getEvents() & GameEvent::Step) game->registerStep(object.get());
+			if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object.get());
+			if (object->getEvents() & GameEvent::Render) game->registerRender(object.get());
+			sceneObjectList.push_back(std::move(object));
+		}{
+			std::unique_ptr<Object> object(new SpineTest());
+			if (object->getEvents() & GameEvent::BeginStep) game->registerBeginStep(object.get());
+			if (object->getEvents() & GameEvent::Step) game->registerStep(object.get());
+			if (object->getEvents() & GameEvent::EndStep) game->registerEndStep(object.get());
+			if (object->getEvents() & GameEvent::Render) game->registerRender(object.get());
+			sceneObjectList.push_back(std::move(object));
+		}
 	return true;
 }
 
