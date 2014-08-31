@@ -21,7 +21,7 @@ SpineTest::SpineTest() {
 
 	std::unique_ptr<spine::SkeletonDrawable> skeletonDrawable(new spine::SkeletonDrawable(skeletonData, stateData));
 	drawable = std::move(skeletonDrawable);
-	drawable->timeScale = 2.5;
+	drawable->timeScale = 2;
 
 	skeleton = drawable->skeleton;
 	skeleton->flipX = false;
@@ -46,11 +46,11 @@ SpineTest::~SpineTest() {
 
 void SpineTest::step() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		x -= 8;
+		x -= 12;
 		skeleton->flipX = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		x += 8;
+		x += 12;
 		skeleton->flipX = false;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -= 8;
@@ -60,8 +60,10 @@ void SpineTest::step() {
 	TrackEntry* entry = spAnimationState_getCurrent(drawable->state, 0);
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
 		if (strcmp("anm_run", entry->animation->name) != 0) spAnimationState_setAnimationByName(drawable->state, 0, "anm_run", true);
+		drawable->timeScale = 3.5;
 	} else {
 		if (strcmp("anm_idle", entry->animation->name) != 0) spAnimationState_setAnimationByName(drawable->state, 0, "anm_idle", true);
+		drawable->timeScale = 2;
 	}
 
 	skeleton->x = x;
