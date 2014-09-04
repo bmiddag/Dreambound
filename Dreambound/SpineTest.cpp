@@ -16,7 +16,7 @@ SpineTest::SpineTest() {
 
 	// Configure mixing.
 	stateData = spAnimationStateData_create(skeletonData);
-	spAnimationStateData_setMixByName(stateData, "anm_idle", "anm_idle", 0.2f);
+	spAnimationStateData_setMixByName(stateData, "anm_idle", "anm_idle", 0.5f);
 	spAnimationStateData_setMixByName(stateData, "anm_run", "anm_idle", 0.5f);
 
 	std::unique_ptr<spine::SkeletonDrawable> skeletonDrawable(new spine::SkeletonDrawable(skeletonData, stateData));
@@ -57,7 +57,7 @@ void SpineTest::step() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y += 8;
 
 	// Handle animations
-	TrackEntry* entry = spAnimationState_getCurrent(drawable->state, 0);
+	spTrackEntry* entry = spAnimationState_getCurrent(drawable->state, 0);
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
 		if (strcmp("anm_run", entry->animation->name) != 0) spAnimationState_setAnimationByName(drawable->state, 0, "anm_run", true);
 		drawable->timeScale = 3.5;

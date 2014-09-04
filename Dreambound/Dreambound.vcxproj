@@ -81,8 +81,8 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Bol.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="spine-sfml.cpp" />
     <ClCompile Include="SpineTest.cpp" />
+    <ClCompile Include="spine\spine-sfml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChangeListener.hpp" />
