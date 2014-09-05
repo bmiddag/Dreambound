@@ -7,11 +7,16 @@
 
 class SpineTest : public Object {
 private:
+	enum Anim {
+		Idle,
+		Run
+	};
+
+	std::map<Anim, std::unique_ptr<spine::Animation>> AnimMap;
 	
 	spAtlas* atlas;
 	spSkeletonBounds* bounds;
 	spSkeletonData* skeletonData;
-	spAnimationStateData* stateData;
 	std::unique_ptr<spine::SkeletonDrawable> drawable;
 	spSkeleton* skeleton;
 

@@ -82,6 +82,8 @@
     <ClCompile Include="Bol.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpineTest.cpp" />
+    <ClCompile Include="spine\Animation.cpp" />
+    <ClCompile Include="spine\SkeletonDrawable.cpp" />
     <ClCompile Include="spine\spine-sfml.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -14,23 +14,12 @@ SpineTest::SpineTest() {
 	spSkeletonJson_dispose(json);
 	bounds = spSkeletonBounds_create();
 
-	// Configure mixing.
-	stateData = spAnimationStateData_create(skeletonData);
-	spAnimationStateData_setMixByName(stateData, "anm_idle", "anm_idle", 0.5f);
-	spAnimationStateData_setMixByName(stateData, "anm_run", "anm_idle", 0.5f);
+	drawable = std::make_unique<spine::SkeletonDrawable>(skeletonData);
+	skeleton = drawable->getSkeleton();
 
-	std::unique_ptr<spine::SkeletonDrawable> skeletonDrawable(new spine::SkeletonDrawable(skeletonData, stateData));
-	drawable = std::move(skeletonDrawable);
-	drawable->timeScale = 2;
-
-	skeleton = drawable->skeleton;
-	skeleton->flipX = false;
-	skeleton->flipY = false;
-	spSkeleton_setToSetupPose(skeleton);
-
-	spSkeleton_updateWorldTransform(skeleton);
-
-	spAnimationState_setAnimationByName(drawable->state, 0, "anm_idle", true);
+	//Configure animations
+	AnimMap[Anim::Idle] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_idle"), true, 1.f, 0.f, 60.f);
+	AnimMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 7.f/4.f, 30.f, 130.f);
 
 	x = 320;
 	y = 460;
@@ -57,18 +46,15 @@ void SpineTest::step() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y += 8;
 
 	// Handle animations
-	spTrackEntry* entry = spAnimationState_getCurrent(drawable->state, 0);
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
-		if (strcmp("anm_run", entry->animation->name) != 0) spAnimationState_setAnimationByName(drawable->state, 0, "anm_run", true);
-		drawable->timeScale = 3.5;
+		if (drawable->getAnimation() != AnimMap[Anim::Run].get()) drawable->setAnimation(AnimMap[Anim::Run].get(), 10.f, spine::BlendType::Linear);
 	} else {
-		if (strcmp("anm_idle", entry->animation->name) != 0) spAnimationState_setAnimationByName(drawable->state, 0, "anm_idle", true);
-		drawable->timeScale = 2;
+		if (drawable->getAnimation() != AnimMap[Anim::Idle].get()) drawable->setAnimation(AnimMap[Anim::Idle].get(), 40.f, spine::BlendType::Linear);
 	}
 
 	skeleton->x = x;
 	skeleton->y = y;
-	drawable->update(1.f / 60.f);
+	drawable->update();
 }
 
 void SpineTest::render(sf::RenderWindow* canvas) {

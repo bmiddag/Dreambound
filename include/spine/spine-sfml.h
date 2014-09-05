@@ -31,28 +31,91 @@
 #ifndef SPINE_SFML_H_
 #define SPINE_SFML_H_
 
+#include <memory>
 #include <spine/spine.h>
+#include <spine/extension.h>
 #include <SFML/Graphics/Vertex.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 
 namespace spine {
 
-class SkeletonDrawable: public sf::Drawable {
-public:
-	spSkeleton* skeleton;
-	spAnimationState* state;
-	float timeScale;
-	sf::VertexArray* vertexArray;
+	typedef enum BlendType {
+		Constant,
+		Linear,
+		SlowStart,
+		SlowEnd,
+		Smooth
+	} BlendType;
 
-	SkeletonDrawable (spSkeletonData* skeleton, spAnimationStateData* stateData = 0);
-	~SkeletonDrawable ();
+	class Animation {
+	private:
+		spAnimation* animation;
+		bool loop;
+		float timeScale; // Time scale factor for this animation (Total FPS = skeleton FPS * anim time scale)
+		float startFrame;
+		float stopFrame;
 
-	void update (float deltaTime);
+		// Next animation fields
+		Animation* nextAnimation;
+		float blendFactor;
+		float blendFrames;
+		BlendType blendType;
 
-	virtual void draw (sf::RenderTarget& target, sf::RenderStates states) const;
-private:
-	float* worldVertices;
-};
+	public:
+		Animation(spAnimation* animation, bool loop, float timeScale, float startFrame, float stopFrame);
+		void setNextAnimation(Animation* nextAnimation, float blendFrames = 0.f, BlendType blendType = BlendType::Linear, float blendFactor = 0.f);
 
-} /* namespace spine */
-#endif /* SPINE_SFML_H_ */
+		// Current animation getters
+		spAnimation* getAnimation();
+		bool isLoop();
+		float getTimeScale();
+		float getStartFrame();
+		float getStopFrame();
+
+		// Next animation getters
+		Animation* getNextAnimation();
+		float getBlendFactor();
+		float getBlendFrames();
+		BlendType getBlendType();
+	};
+	
+	class SkeletonDrawable: public sf::Drawable {
+	private:
+		spSkeleton* skeleton;
+		Animation* animation;
+		float fps; // Skeleton FPS (Total FPS = skeleton FPS * anim time scale)
+		float lastFrame; // Not useful yet but will be when events are implemented
+		float currentFrame; // Float because 0.5 frames timestep is allowed
+
+		float blendFactor;
+		float blendFrames;
+		float currentBlendFrame;
+		BlendType blendType;
+
+		std::unique_ptr<sf::VertexArray> vertexArray;
+		float* worldVertices;
+
+	public:
+		SkeletonDrawable(spSkeletonData* skeleton, float fps = 30.f);
+		~SkeletonDrawable();
+		
+		void SkeletonDrawable::setAnimation(Animation* animation, bool force = false);
+		void SkeletonDrawable::setAnimation(Animation* animation, float blendFrames, BlendType blendType = BlendType::Linear, float blendFactor = 0.f, bool force = false);
+		
+		void update(float frames = 1.f);
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+		// Spine animation getters & setters
+		Animation* getAnimation();
+		float getFPS();
+		void setFPS(float fps);
+		spSkeleton* getSkeleton();
+
+		// Blending getters
+		float getBlendFactor();
+		float getBlendFrames();
+		BlendType getBlendType();
+	};
+
+} // namespace spine
+#endif // SPINE_SFML_H_

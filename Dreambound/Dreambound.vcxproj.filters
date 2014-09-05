@@ -57,6 +57,12 @@
     <ClCompile Include="spine\spine-sfml.cpp">
       <Filter>Source Files\Spine</Filter>
     </ClCompile>
+    <ClCompile Include="spine\SkeletonDrawable.cpp">
+      <Filter>Source Files\Spine</Filter>
+    </ClCompile>
+    <ClCompile Include="spine\Animation.cpp">
+      <Filter>Source Files\Spine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.hpp">
