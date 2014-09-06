@@ -47,6 +47,31 @@ namespace spine {
 		Smooth
 	} BlendType;
 
+	class Bone {
+	protected:
+		spBone* bone;
+		spSkeleton* skeleton;
+
+	public:
+		Bone(spBone* bone, spSkeleton* skeleton);
+		float getRotation();
+		spBone* getBone();
+		void setRotation(float rotation);
+	};
+
+	class WobblyBone: public Bone {
+	private:
+		float defaultRotation;
+		float stiffness;
+		float rotationSpeed;
+		float stretchFactor;
+		float previousParentRotation;
+
+	public:
+		WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness = 0.5f, float stretchFactor = 0.f);
+		void update(sf::Vector2f force);
+	};
+
 	class Animation {
 	private:
 		spAnimation* animation;

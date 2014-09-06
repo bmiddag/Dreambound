@@ -63,6 +63,9 @@
     <ClCompile Include="spine\Animation.cpp">
       <Filter>Source Files\Spine</Filter>
     </ClCompile>
+    <ClCompile Include="spine\Bone.cpp">
+      <Filter>Source Files\Spine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.hpp">

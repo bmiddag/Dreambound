@@ -22,4 +22,6 @@ enum GameEvent {
 #define SCREEN_WIDTH 1080
 #define SCREEN_HEIGHT 720
 
+#define PI 3.14159265
+
 #endif
