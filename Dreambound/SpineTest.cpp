@@ -17,7 +17,7 @@ SpineTest::SpineTest() {
 	skeleton = drawable->getSkeleton();
 
 	// Configure animations
-	animMap[Anim::Idle] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_idle"), true, 1.f, 0.f, 60.f);
+	animMap[Anim::Idle] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_idle"), true, 0.75f, 0.f, 60.f);
 	animMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 7.f/4.f, 30.f, 130.f);
 
 	// Configure hair map
@@ -100,7 +100,7 @@ void SpineTest::initHair() {
 	hairMap[Hair::Front8] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_8"), skeleton, 0.75f, 0.15f);
 	hairMap[Hair::Front9] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_9"), skeleton, 0.65f, 0.08f);
 	hairMap[Hair::Front10] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_10"), skeleton, 0.75f, 0.1f);
-	hairMap[Hair::Front11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_11"), skeleton, 0.80f, 0.2f);
+	hairMap[Hair::Front11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_11"), skeleton, 0.75f, 0.2f);
 
 	hairMap[Hair::Back1] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_back_1"), skeleton, 0.8f, 0.05f);
 	hairMap[Hair::Back2] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_back_2"), skeleton, 0.8f, 0.08f);
