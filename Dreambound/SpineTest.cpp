@@ -29,6 +29,8 @@ SpineTest::SpineTest() {
 	y = 460;
 	skeleton->x = x;
 	skeleton->y = y;
+
+	moeitemeter = 0.f;
 }
 
 SpineTest::~SpineTest() {
@@ -59,7 +61,6 @@ void SpineTest::step() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad8)) wind.y -= 1;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad2)) wind.y += 1;
 
-
 	// Handle animations
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
 		if (drawable->getAnimation() != animMap[Anim::Run].get()) drawable->setAnimation(animMap[Anim::Run].get(), 10.f, spine::BlendType::Linear);
@@ -75,6 +76,14 @@ void SpineTest::step() {
 	// Get current head X and Y to handle hair movement
 	float headX = headBone.get()->getBone()->worldX + x;
 	float headY = headBone.get()->getBone()->worldY + y;
+
+	// Head rotation test
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9)) {
+		headBone.get()->setRotation(headBone.get()->getRotation() - moeitemeter);
+		moeitemeter += 3.f;
+	} else {
+		moeitemeter = 0.f;
+	}
 
 	// Update hair
 	updateHair(sf::Vector2f(skeleton->flipX ? -(headX - prevHeadX - wind.x) : (headX - prevHeadX - wind.x), headY - prevHeadY - wind.y));

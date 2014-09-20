@@ -33,6 +33,8 @@ private:
 
 	int x;
 	int y;
+
+	float moeitemeter;
 public:
 	SpineTest();
 	~SpineTest();
