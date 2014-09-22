@@ -22,10 +22,13 @@ namespace spine {
 
 	WobblyBone::WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness, float stretchFactor) : Bone(bone, skeleton) {
 		this->stiffness = stiffness;
-		this->stretchFactor = stretchFactor;
 		defaultRotation = bone->rotation;
 		rotationSpeed = 0.f;
-		previousParentRotation = bone->parent->rotation;
+		previousParentRotation = bone->parent->worldRotation;
+
+		// Stretching
+		this->stretchFactor = stretchFactor;
+
 	}
 
 	void WobblyBone::update(sf::Vector2f force) {
@@ -37,18 +40,19 @@ namespace spine {
 		//yForceFactor = ((yForceFactor > 0.f) ? 0.2f : -0.2f) + (0.8f * yForceFactor);
 
 		rotationSpeed += (force.x * xForceFactor + force.y * yForceFactor);
-		rotationSpeed -= (bone->parent->rotation - previousParentRotation) * 3;
+		rotationSpeed -= (fmod(bone->parent->worldRotation - previousParentRotation,360.f)) * 3;
 		rotationSpeed *= (1.f - pow(stiffness, 2));
 		rotationSpeed -= (stiffness*2) * ((rotation - defaultRotation) > 0.f ? 1.f : -1.f) * pow((rotation - defaultRotation) / maxRotation, 2);
 
 		if (stretchFactor != 0.f) {
 			// not working yet
 			//bone->scaleX += stretchFactor * (force.x * xForceFactor + force.y * yForceFactor);
+			//bone->scaleX -= pow(stretchFactor,2) * (rotationSpeed);
 			//bone->scaleY += stretchFactor * force.y * yForceFactor;
 		}
 
 		setRotation(fmod(rotation + rotationSpeed,360.f));
 
-		previousParentRotation = bone->parent->rotation;
+		previousParentRotation = bone->parent->worldRotation;
 	}
 }
