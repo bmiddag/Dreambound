@@ -50,3 +50,14 @@ void _spAtlasPage_disposeTexture (spAtlasPage* self){
 char* _spUtil_readFile (const char* path, int* length){
 	return _readFile(path, length);
 }
+
+float spine::getRotation(float rotation) {
+	float endRotation = rotation;
+	while (endRotation > 180.f) {
+		endRotation -= 360.f;
+	}
+	while (endRotation <= -180.f) {
+		endRotation += 360.f;
+	}
+	return endRotation;
+}

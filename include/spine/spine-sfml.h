@@ -142,5 +142,7 @@ namespace spine {
 		BlendType getBlendType();
 	};
 
+	float getRotation(float rotation);
+
 } // namespace spine
 #endif // SPINE_SFML_H_

@@ -8,7 +8,7 @@ namespace spine {
 	}
 
 	float Bone::getRotation() {
-		return bone->rotation;
+		return spine::getRotation(bone->rotation);
 	}
 
 	spBone* Bone::getBone() {
@@ -16,15 +16,15 @@ namespace spine {
 	}
 
 	void Bone::setRotation(float rotation) {
-		bone->rotation = rotation;
+		bone->rotation = spine::getRotation(rotation);
 		spBone_updateWorldTransform(bone, skeleton->flipX, skeleton->flipY);
 	}
 
 	WobblyBone::WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness, float stretchFactor) : Bone(bone, skeleton) {
 		this->stiffness = stiffness;
-		defaultRotation = bone->rotation;
+		defaultRotation = getRotation();
 		rotationSpeed = 0.f;
-		previousParentRotation = bone->parent->worldRotation;
+		previousParentRotation = spine::getRotation(bone->parent->worldRotation);
 
 		// Stretching
 		this->stretchFactor = stretchFactor;
@@ -40,9 +40,10 @@ namespace spine {
 		//yForceFactor = ((yForceFactor > 0.f) ? 0.2f : -0.2f) + (0.8f * yForceFactor);
 
 		rotationSpeed += (force.x * xForceFactor + force.y * yForceFactor);
-		rotationSpeed -= (fmod(bone->parent->worldRotation - previousParentRotation,360.f)) * 3;
+		float parentRotationDiff = spine::getRotation(spine::getRotation(bone->parent->worldRotation) - previousParentRotation);
+		rotationSpeed -= parentRotationDiff * 3;
 		rotationSpeed *= (1.f - pow(stiffness, 2));
-		rotationSpeed -= (stiffness*2) * ((rotation - defaultRotation) > 0.f ? 1.f : -1.f) * pow((rotation - defaultRotation) / maxRotation, 2);
+		rotationSpeed -= (stiffness*2) * (spine::getRotation(rotation - defaultRotation) > 0.f ? 1.f : -1.f) * pow(spine::getRotation(rotation - defaultRotation) / maxRotation, 2);
 
 		if (stretchFactor != 0.f) {
 			// not working yet
@@ -51,8 +52,8 @@ namespace spine {
 			//bone->scaleY += stretchFactor * force.y * yForceFactor;
 		}
 
-		setRotation(fmod(rotation + rotationSpeed,360.f));
+		setRotation(rotation + rotationSpeed);
 
-		previousParentRotation = bone->parent->worldRotation;
+		previousParentRotation = spine::getRotation(bone->parent->worldRotation);
 	}
 }
