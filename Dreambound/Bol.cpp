@@ -11,10 +11,10 @@ Bol::Bol(double radius, sf::Color color) {
 }
 
 void Bol::step() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) x-=5;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) x+=5;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y-=5;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y+=5;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) x+=5;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) x-=5;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y+=5;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y-=5;
 	shape.setPosition(x, y);
 }
 

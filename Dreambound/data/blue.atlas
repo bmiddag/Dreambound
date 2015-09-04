@@ -4,246 +4,232 @@ format: RGBA8888
 filter: Linear,Linear
 repeat: none
 actors/Blue/blue_foot_bendable_main
-  rotate: false
-  xy: 413, 670
-  size: 217, 100
-  orig: 217, 100
+  rotate: true
+  xy: 1742, 1607
+  size: 221, 123
+  orig: 221, 123
   offset: 0, 0
   index: -1
 actors/Blue/blue_foot_bendable_toes
-  rotate: true
-  xy: 359, 338
-  size: 298, 87
-  orig: 298, 87
-  offset: 0, 0
-  index: -1
-actors/Blue/blue_footl_normal
   rotate: false
-  xy: 844, 1870
-  size: 365, 176
-  orig: 365, 176
-  offset: 0, 0
-  index: -1
-actors/Blue/blue_footr_normal
-  rotate: true
-  xy: 260, 259
-  size: 377, 97
-  orig: 377, 97
+  xy: 1550, 1830
+  size: 306, 110
+  orig: 306, 110
   offset: 0, 0
   index: -1
 actors/Blue/blue_handl_fist
-  rotate: true
-  xy: 1418, 1723
+  rotate: false
+  xy: 240, 667
   size: 155, 150
   orig: 155, 150
   offset: 0, 0
   index: -1
 actors/Blue/blue_handl_heli
   rotate: false
-  xy: 413, 772
+  xy: 831, 1454
   size: 207, 221
   orig: 207, 221
   offset: 0, 0
   index: -1
 actors/Blue/blue_handl_normal
   rotate: true
-  xy: 448, 290
+  xy: 1548, 1660
   size: 168, 192
   orig: 168, 192
   offset: 0, 0
   index: -1
 actors/Blue/blue_handl_stretched
-  rotate: true
-  xy: 204, 17
+  rotate: false
+  xy: 859, 1677
   size: 240, 201
   orig: 240, 201
   offset: 0, 0
   index: -1
 actors/Blue/blue_handr_fist
   rotate: false
-  xy: 1748, 1723
+  xy: 435, 919
   size: 142, 128
   orig: 142, 129
   offset: 0, 1
   index: -1
 actors/Blue/blue_handr_heli
-  rotate: true
-  xy: 448, 460
+  rotate: false
+  xy: 1195, 1656
   size: 208, 195
   orig: 208, 195
   offset: 0, 0
   index: -1
 actors/Blue/blue_handr_normal
   rotate: false
-  xy: 976, 1548
+  xy: 1195, 1478
   size: 145, 176
   orig: 145, 176
   offset: 0, 0
   index: -1
 actors/Blue/blue_handr_stretched
-  rotate: true
-  xy: 794, 1715
+  rotate: false
+  xy: 1040, 1477
   size: 153, 180
   orig: 153, 180
   offset: 0, 0
   index: -1
 actors/Blue/blue_head
   rotate: false
-  xy: 2, 1344
-  size: 362, 341
-  orig: 362, 341
+  xy: 2, 1358
+  size: 332, 327
+  orig: 332, 327
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_curl
-  rotate: false
-  xy: 976, 1444
-  size: 142, 102
-  orig: 142, 102
+  rotate: true
+  xy: 577, 783
+  size: 133, 92
+  orig: 133, 92
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_eyel_pupil
   rotate: false
-  xy: 350, 949
+  xy: 82, 2
   size: 47, 44
   orig: 47, 44
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_eyelids_1
   rotate: true
-  xy: 1123, 1540
+  xy: 1342, 1470
   size: 184, 77
   orig: 192, 142
   offset: 1, 65
   index: -1
 actors/Blue/blue_head_eyelids_2
   rotate: true
-  xy: 715, 1689
+  xy: 579, 918
   size: 186, 77
   orig: 192, 142
   offset: 0, 65
   index: -1
 actors/Blue/blue_head_eyelids_3
   rotate: false
-  xy: 1202, 1696
+  xy: 244, 958
   size: 189, 89
   orig: 192, 142
   offset: 1, 53
   index: -1
 actors/Blue/blue_head_eyelids_4
-  rotate: true
-  xy: 865, 1523
+  rotate: false
+  xy: 1421, 1549
   size: 190, 109
   orig: 192, 142
   offset: 1, 33
   index: -1
 actors/Blue/blue_head_eyelids_5
   rotate: true
-  xy: 492, 97
+  xy: 1405, 1660
   size: 191, 141
   orig: 192, 142
   offset: 1, 1
   index: -1
 actors/Blue/blue_head_eyelids_angry
-  rotate: false
-  xy: 976, 1726
+  rotate: true
+  xy: 715, 1692
   size: 183, 142
   orig: 192, 142
   offset: 2, 0
   index: -1
 actors/Blue/blue_head_eyer_pupil
-  rotate: false
-  xy: 163, 2
+  rotate: true
+  xy: 741, 1407
   size: 25, 30
   orig: 25, 30
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_1
   rotate: false
-  xy: 771, 1340
+  xy: 397, 688
   size: 131, 126
   orig: 131, 126
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_10
   rotate: false
-  xy: 904, 1444
+  xy: 1628, 1484
   size: 70, 77
   orig: 70, 77
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_11
   rotate: false
-  xy: 668, 1407
+  xy: 638, 1407
   size: 101, 278
   orig: 101, 278
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_2
-  rotate: true
-  xy: 904, 1308
+  rotate: false
+  xy: 1613, 1563
   size: 82, 95
   orig: 82, 95
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_3
-  rotate: true
-  xy: 1199, 1423
+  rotate: false
+  xy: 336, 338
   size: 92, 140
   orig: 92, 140
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_4
-  rotate: true
-  xy: 904, 1392
+  rotate: false
+  xy: 658, 970
   size: 50, 134
   orig: 50, 134
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_5
   rotate: true
-  xy: 1211, 1787
+  xy: 1421, 1456
   size: 91, 205
   orig: 91, 205
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_6
-  rotate: false
-  xy: 492, 2
+  rotate: true
+  xy: 1947, 1891
   size: 155, 93
   orig: 155, 93
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_7
   rotate: false
-  xy: 1917, 1861
+  xy: 260, 480
   size: 118, 185
   orig: 118, 185
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_8
   rotate: true
-  xy: 1202, 1593
+  xy: 418, 816
   size: 101, 157
   orig: 101, 157
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_9
-  rotate: true
-  xy: 359, 290
+  rotate: false
+  xy: 688, 1307
   size: 46, 67
   orig: 46, 67
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_back_1
-  rotate: true
-  xy: 350, 995
+  rotate: false
+  xy: 741, 1434
   size: 88, 256
   orig: 88, 256
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_back_2
-  rotate: false
-  xy: 1161, 1790
+  rotate: true
+  xy: 2, 2
   size: 44, 78
   orig: 44, 78
   offset: 0, 0
@@ -263,176 +249,176 @@ actors/Blue/blue_head_hair_heli_2
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_heli_base
-  rotate: true
-  xy: 244, 947
+  rotate: false
+  xy: 1550, 1942
   size: 395, 104
   orig: 395, 104
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_hair_spike
   rotate: true
-  xy: 1571, 1853
+  xy: 1204, 1853
   size: 193, 344
   orig: 193, 344
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_bigsmile
   rotate: true
-  xy: 1892, 1720
+  xy: 1867, 1579
   size: 131, 52
   orig: 131, 52
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_cheeky_big
   rotate: true
-  xy: 1946, 1724
+  xy: 1867, 1712
   size: 135, 63
   orig: 135, 63
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_cheeky_small
-  rotate: true
-  xy: 1361, 1606
+  rotate: false
+  xy: 638, 1376
   size: 88, 29
   orig: 88, 29
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_happy
   rotate: true
-  xy: 1341, 1460
+  xy: 302, 91
   size: 55, 29
   orig: 55, 29
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_idiotsmile
-  rotate: false
-  xy: 1202, 1517
+  rotate: true
+  xy: 260, 309
   size: 169, 74
   orig: 169, 74
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_normal
   rotate: false
-  xy: 1917, 1853
+  xy: 336, 1361
   size: 19, 6
   orig: 19, 6
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_mouth_surprised
   rotate: false
-  xy: 413, 641
+  xy: 336, 309
   size: 26, 27
   orig: 26, 27
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_1
   rotate: false
-  xy: 366, 1369
+  xy: 336, 1369
   size: 300, 316
   orig: 300, 316
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_10
   rotate: false
-  xy: 407, 27
+  xy: 603, 1106
   size: 83, 261
   orig: 83, 261
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_11
   rotate: false
-  xy: 240, 638
+  xy: 244, 1049
   size: 171, 307
   orig: 171, 307
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_12
   rotate: false
-  xy: 2, 34
+  xy: 2, 48
   size: 200, 259
   orig: 200, 259
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_13
   rotate: true
-  xy: 1211, 1880
+  xy: 844, 1880
   size: 166, 358
   orig: 166, 358
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_14
   rotate: false
-  xy: 1570, 1714
+  xy: 240, 819
   size: 176, 137
   orig: 176, 137
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_15
   rotate: true
-  xy: 2, 611
+  xy: 2, 625
   size: 335, 236
   orig: 335, 236
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_2
   rotate: false
-  xy: 2, 948
+  xy: 2, 962
   size: 240, 394
   orig: 240, 394
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_3
   rotate: true
-  xy: 2, 295
+  xy: 2, 309
   size: 314, 256
   orig: 314, 257
   offset: 0, 1
   index: -1
 actors/Blue/blue_head_ponytail_4
-  rotate: false
-  xy: 612, 1109
+  rotate: true
+  xy: 417, 1049
   size: 56, 160
   orig: 56, 160
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_5
   rotate: false
-  xy: 771, 1468
+  xy: 1101, 1659
   size: 92, 219
   orig: 92, 219
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_6
   rotate: true
-  xy: 1120, 1447
+  xy: 1858, 1849
   size: 91, 77
   orig: 91, 77
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_7
-  rotate: true
-  xy: 2, 2
+  rotate: false
+  xy: 302, 148
   size: 30, 159
   orig: 30, 159
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_8
-  rotate: false
-  xy: 366, 1271
+  rotate: true
+  xy: 204, 41
   size: 266, 96
   orig: 266, 96
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_9
-  rotate: false
-  xy: 350, 1085
+  rotate: true
+  xy: 417, 1107
   size: 260, 184
   orig: 260, 184
   offset: 0, 0
   index: -1
 actors/Blue/blue_head_ponytail_tie
-  rotate: true
-  xy: 204, 265
+  rotate: false
+  xy: 530, 778
   size: 28, 36
   orig: 28, 36
   offset: 0, 0

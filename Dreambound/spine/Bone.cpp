@@ -20,7 +20,7 @@ namespace spine {
 		spBone_updateWorldTransform(bone, skeleton->flipX, skeleton->flipY);
 	}
 
-	WobblyBone::WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness, float stretchFactor) : Bone(bone, skeleton) {
+	WobblyBone::WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness, float stretchFactor, float horAmplifier, float verAmplifier) : Bone(bone, skeleton) {
 		this->stiffness = stiffness;
 		defaultRotation = getRotation();
 		rotationSpeed = 0.f;
@@ -29,18 +29,23 @@ namespace spine {
 		// Stretching
 		this->stretchFactor = stretchFactor;
 
+		this->horizontalAmplifier = horAmplifier;
+		this->verticalAmplifier = verAmplifier;
 	}
 
 	void WobblyBone::update(sf::Vector2f force) {
 		float maxRotation = 90.f * (1.f - stiffness);
 		float rotation = getRotation();
-		float xForceFactor = sin((bone->worldRotation) * PI / 180.f) * (1.f - stiffness);
-		float yForceFactor = cos((bone->worldRotation) * PI / 180.f) * (1.f - stiffness);
+		//float xForceFactor = (sin((bone->worldRotation) * PI / 180.f) > 0.f ? 1.f : -1.f) * (1.f - stiffness);
+		//float yForceFactor = (cos((bone->worldRotation) * PI / 180.f) > 0.f ? 1.f : -1.f) * (1.f - stiffness);
+		float xForceFactor = sin((bone->worldRotation) * PI / 180.f) * (1.f - stiffness) * horizontalAmplifier; // * 0.7f;
+		float yForceFactor = cos((bone->worldRotation) * PI / 180.f) * (1.f - stiffness) * verticalAmplifier; // * 1.4f;
+
 		//xForceFactor = ((xForceFactor > 0.f) ? 0.2f : -0.2f) + (0.8f * xForceFactor);
 		//yForceFactor = ((yForceFactor > 0.f) ? 0.2f : -0.2f) + (0.8f * yForceFactor);
 
 		rotationSpeed += (force.x * xForceFactor + force.y * yForceFactor);
-		float parentRotationDiff = spine::getRotation(spine::getRotation(bone->parent->worldRotation) - previousParentRotation);
+		float parentRotationDiff = spine::getRotation(bone->parent->worldRotation - previousParentRotation);
 		rotationSpeed -= parentRotationDiff * 3;
 		rotationSpeed *= (1.f - pow(stiffness, 2));
 		rotationSpeed -= (stiffness*2) * (spine::getRotation(rotation - defaultRotation) > 0.f ? 1.f : -1.f) * pow(spine::getRotation(rotation - defaultRotation) / maxRotation, 2);
@@ -54,6 +59,6 @@ namespace spine {
 
 		setRotation(rotation + rotationSpeed);
 
-		previousParentRotation = spine::getRotation(bone->parent->worldRotation);
+		previousParentRotation = bone->parent->worldRotation;
 	}
 }

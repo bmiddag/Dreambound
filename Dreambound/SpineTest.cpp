@@ -1,4 +1,5 @@
 #include "SpineTest.hpp"
+#include <iostream>
 
 SpineTest::SpineTest() {
 	// Load atlas, skeleton, and animations.
@@ -18,7 +19,7 @@ SpineTest::SpineTest() {
 
 	// Configure animations
 	animMap[Anim::Idle] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_idle"), true, 0.75f, 0.f, 60.f);
-	animMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 7.f/4.f, 30.f, 130.f);
+	animMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 14.f/8.f, 30.f, 130.f);
 
 	// Configure hair map
 	wind = sf::Vector2f(0.f, 0.f);
@@ -45,15 +46,23 @@ void SpineTest::step() {
 	float prevHeadY = headBone.get()->getBone()->worldY + y;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		x -= 12;
+		//x -= 12;
+		prevHeadX += 12;
 		skeleton->flipX = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		x += 12;
+		//x += 12;
+		prevHeadX -= 12;
 		skeleton->flipX = false;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) y -= 18;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) y += 18;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		//y -= 18;
+		prevHeadY += 18;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		//y += 18;
+		prevHeadY -= 18;
+	}
 
 	// Wind test
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad4)) wind.x -= 1;
@@ -65,6 +74,7 @@ void SpineTest::step() {
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
 		if (drawable->getAnimation() != animMap[Anim::Run].get()) drawable->setAnimation(animMap[Anim::Run].get(), 10.f, spine::BlendType::Linear);
 	} else {
+		std::cout << headBone.get()->getBone()->worldRotation << "\n";
 		if (drawable->getAnimation() != animMap[Anim::Idle].get()) drawable->setAnimation(animMap[Anim::Idle].get(), 40.f, spine::BlendType::Linear);
 	}
 
@@ -80,7 +90,8 @@ void SpineTest::step() {
 	// Head rotation test
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9)) {
 		headBone.get()->setRotation(headBone.get()->getRotation() - moeitemeter);
-		moeitemeter += 3.f;
+		headBone.get()->getBone()->rotation = headBone.get()->getRotation() + moeitemeter;
+		moeitemeter += 7.f;
 	} else {
 		moeitemeter = 0.f;
 	}
@@ -109,28 +120,28 @@ void SpineTest::initHair() {
 	hairMap[Hair::Front8] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_8"), skeleton, 0.75f, 0.15f);
 	hairMap[Hair::Front9] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_9"), skeleton, 0.65f, 0.08f);
 	hairMap[Hair::Front10] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_10"), skeleton, 0.75f, 0.1f);
-	hairMap[Hair::Front11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_11"), skeleton, 0.75f, 0.2f);
+	hairMap[Hair::Front11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_11"), skeleton, 0.90f, 0.2f);
 
 	hairMap[Hair::Back1] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_back_1"), skeleton, 0.8f, 0.05f);
 	hairMap[Hair::Back2] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_back_2"), skeleton, 0.8f, 0.08f);
-	hairMap[Hair::Spike] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_spike"), skeleton, 0.75f, 0.05f);
+	hairMap[Hair::Spike] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_spike"), skeleton, 0.80f, 0.05f);
 
 	hairMap[Hair::PonytailTie] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_tie"), skeleton, 0.85f, 0.0f);
 	hairMap[Hair::PonytailBase] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_base"), skeleton, 0.8f, 0.0f);
 	hairMap[Hair::Ponytail1] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_1"), skeleton, 0.78f, 0.2f);
-	hairMap[Hair::Ponytail2] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_2"), skeleton, 0.70f, 0.15f);
+	hairMap[Hair::Ponytail2] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_2"), skeleton, 0.73f, 0.15f);
 	hairMap[Hair::Ponytail3] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_3"), skeleton, 0.70f, 0.22f);
 	hairMap[Hair::Ponytail4] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_4"), skeleton, 0.60f, 0.17f);
-	hairMap[Hair::Ponytail5] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_5"), skeleton, 0.50f, 0.15f);
+	hairMap[Hair::Ponytail5] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_5"), skeleton, 0.55f, 0.15f);
 	hairMap[Hair::Ponytail6] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_6"), skeleton, 0.35f, 0.12f);
 	hairMap[Hair::Ponytail7] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_7"), skeleton, 0.55f, 0.17f);
-	hairMap[Hair::Ponytail8] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_8"), skeleton, 0.80f, 0.19f);
-	hairMap[Hair::Ponytail9] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_9"), skeleton, 0.77f, 0.16f);
-	hairMap[Hair::Ponytail10] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_10"), skeleton, 0.60f, 0.17f);
-	hairMap[Hair::Ponytail11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_11"), skeleton, 0.82f, 0.12f);
-	hairMap[Hair::Ponytail12] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_12"), skeleton, 0.60f, 0.15f);
+	hairMap[Hair::Ponytail8] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_8"), skeleton, 0.71f, 0.19f);
+	hairMap[Hair::Ponytail9] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_9"), skeleton, 0.67f, 0.16f);
+	hairMap[Hair::Ponytail10] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_10"), skeleton, 0.50f, 0.17f);
+	hairMap[Hair::Ponytail11] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_11"), skeleton, 0.72f, 0.12f);
+	hairMap[Hair::Ponytail12] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_12"), skeleton, 0.58f, 0.15f);
 	hairMap[Hair::Ponytail13] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_13"), skeleton, 0.70f, 0.13f);
-	hairMap[Hair::Ponytail14] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_14"), skeleton, 0.50f, 0.19f);
+	hairMap[Hair::Ponytail14] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_14"), skeleton, 0.55f, 0.19f);
 	hairMap[Hair::Ponytail15] = std::make_unique<spine::WobblyBone>(spSkeleton_findBone(skeleton, "bone_hair_ponytail_15"), skeleton, 0.80f, 0.11f);
 }
 

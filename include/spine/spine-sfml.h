@@ -66,9 +66,11 @@ namespace spine {
 		float rotationSpeed;
 		float stretchFactor;
 		float previousParentRotation;
+		float horizontalAmplifier;
+		float verticalAmplifier;
 
 	public:
-		WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness = 0.5f, float stretchFactor = 0.f);
+		WobblyBone(spBone* bone, spSkeleton* skeleton, float stiffness = 0.5f, float stretchFactor = 0.f, float horAmplifier = 1.f, float verAmplifier = 1.f);
 		void update(sf::Vector2f force);
 	};
 
@@ -124,8 +126,10 @@ namespace spine {
 		SkeletonDrawable(spSkeletonData* skeleton, float fps = 30.f);
 		~SkeletonDrawable();
 		
-		void SkeletonDrawable::setAnimation(Animation* animation, bool force = false);
-		void SkeletonDrawable::setAnimation(Animation* animation, float blendFrames, BlendType blendType = BlendType::Linear, float blendFactor = 0.f, bool force = false);
+		void correctBonesRotation();
+
+		void setAnimation(Animation* animation, bool force = false);
+		void setAnimation(Animation* animation, float blendFrames, BlendType blendType = BlendType::Linear, float blendFactor = 0.f, bool force = false);
 		
 		void update(float frames = 1.f);
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

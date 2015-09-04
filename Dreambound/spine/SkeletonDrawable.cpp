@@ -40,6 +40,13 @@ namespace spine {
 		spSkeleton_dispose(skeleton);
 	}
 
+	void SkeletonDrawable::correctBonesRotation() {
+		for (int i = 0; i < skeleton->boneCount; i++) {
+			skeleton->bones[i]->rotation = spine::getRotation(skeleton->bones[i]->rotation);
+			spBone_updateWorldTransform(skeleton->bones[i], skeleton->flipX, skeleton->flipY);
+		}
+	}
+
 	void SkeletonDrawable::setAnimation(Animation* animation, bool force) {
 		if (force || (this->animation != animation && animation != NULL)) {
 			this->animation = animation;
@@ -50,6 +57,7 @@ namespace spine {
 			currentBlendFrame = 0.f;
 			if (animation != NULL) {
 				spAnimation_apply(animation->getAnimation(), skeleton, lastFrame, currentFrame, animation->isLoop(), NULL, NULL);
+				correctBonesRotation();
 			}
 		}
 	}
@@ -139,6 +147,7 @@ namespace spine {
 			} else {
 				blendFrames = 0.f;
 				spAnimation_apply(animation->getAnimation(), skeleton, (lastFrame * animation->getTimeScale()) / 30.f, (currentFrame * animation->getTimeScale()) / 30.f, animation->isLoop(), NULL, NULL);
+				correctBonesRotation();
 			}
 
 			lastFrame = currentFrame;
