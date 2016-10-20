@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SFGUI/Config.hpp>
-#include <memory>
 
-#include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <memory>
 
 namespace sfg {
 
@@ -65,8 +65,6 @@ class RendererViewport {
 		sf::Vector2f m_size;
 
 		std::size_t m_id;
-
-		static std::size_t last_id;
 };
 
 }

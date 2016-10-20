@@ -1,8 +1,9 @@
 #pragma once
+
 #include <SFGUI/Widget.hpp>
-#include <memory>
+
 #include <SFML/System/String.hpp>
-#include <SFML/System/Clock.hpp>
+#include <memory>
 
 namespace sfg {
 
@@ -19,7 +20,7 @@ class SFGUI_API Entry : public Widget {
 		 */
 		static Ptr Create( const sf::String& text = L"" );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Set text.
 		 * @param text Text.
@@ -49,17 +50,17 @@ class SFGUI_API Entry : public Widget {
 		/** Get offset to the beginning of the visible text.
 		 * @return Offset.
 		 */
-		std::size_t GetVisibleOffset() const;
+		int GetVisibleOffset() const;
 
 		/** Get current cursor position.
 		 * @return Cursor position.
 		 */
-		std::size_t GetCursorPosition() const;
+		int GetCursorPosition() const;
 
 		/** Set cursor position.
 		 * @param pos Position.
 		 */
-		void SetCursorPosition( std::size_t pos );
+		void SetCursorPosition( int pos );
 
 		/** Check if cursor is visible.
 		 * @return true if visible./
@@ -79,12 +80,12 @@ class SFGUI_API Entry : public Widget {
 		/** Get maximum length.
 		 * @return Maximum length (0 if disabled).
 		 */
-		std::size_t GetMaximumLength() const;
+		int GetMaximumLength() const;
 
 		/** Set maximum length.
 		 * @param max_length Maximum length (0 to disable).
 		 */
-		void SetMaximumLength( std::size_t max_length );
+		void SetMaximumLength( int max_length );
 
 		// Signals.
 		static Signal::SignalID OnTextChanged; //!< Fired when the text changes.
@@ -100,21 +101,21 @@ class SFGUI_API Entry : public Widget {
 		void SetTextMargin( float margin );
 
 		std::unique_ptr<RenderQueue> InvalidateImpl() const override;
-		virtual sf::Vector2f CalculateRequisition() override;
+		sf::Vector2f CalculateRequisition() override;
 
-		virtual void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
-		virtual void HandleUpdate( float seconds ) override;
-		virtual void HandleTextEvent( sf::Uint32 character ) override;
-		virtual void HandleKeyEvent( sf::Keyboard::Key key, bool press ) override;
-		virtual void HandleSizeChange() override;
-		virtual void HandleFocusChange( Widget::Ptr focused_widget ) override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		void HandleUpdate( float seconds ) override;
+		void HandleTextEvent( sf::Uint32 character ) override;
+		void HandleKeyEvent( sf::Keyboard::Key key, bool press ) override;
+		void HandleSizeChange() override;
+		void HandleFocusChange( Widget::Ptr focused_widget ) override;
 
 	private:
 		/** Get closest cursor position to x coordinate.
 		 * @param mouse_pos_x x coordinate.
 		 * @return Closest cursor position.
 		 */
-		std::size_t GetPositionFromMouseX( int mouse_pos_x );
+		int GetPositionFromMouseX( int mouse_pos_x );
 
 		/** Recalculate visible string.
 		 */
@@ -125,23 +126,23 @@ class SFGUI_API Entry : public Widget {
 		 */
 		void MoveCursor( int delta );
 
-		virtual void HandleMouseEnter( int x, int y ) override;
-		virtual void HandleMouseLeave( int x, int y ) override;
+		void HandleMouseEnter( int x, int y ) override;
+		void HandleMouseLeave( int x, int y ) override;
 
 		// Data structures holding the total content of the Entry and the visible portion of it
 		sf::String m_string;
 		mutable sf::String m_visible_string;
 
 		// The offset in the string at which the visible portion starts
-		mutable std::size_t m_visible_offset;
+		mutable int m_visible_offset;
 
 		// The UTF-32 character which hides each character of the string
 		sf::Uint32 m_text_placeholder;
 
-		// The maximum text lenght. If it equals to 0, it disables this limit
-		std::size_t m_max_length;
+		// The maximum text length. If it equals to 0, it disables this limit
+		int m_max_length;
 
-		std::size_t m_cursor_position;
+		int m_cursor_position;
 
 		float m_elapsed_time;
 

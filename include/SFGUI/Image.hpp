@@ -1,11 +1,10 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/Widget.hpp>
 #include <SFGUI/Misc.hpp>
-#include <memory>
 
-#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Image.hpp>
+#include <memory>
 
 namespace sfg {
 
@@ -22,7 +21,7 @@ class SFGUI_API Image : public Widget, public Misc {
 		 */
 		static Ptr Create( const sf::Image& image = sf::Image() );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Set associated sf::Image.
 		 * @param image New sf::Image.

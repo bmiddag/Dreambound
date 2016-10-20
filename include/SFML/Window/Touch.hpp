@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2013 Laurent Gomila (laurent.gom@gmail.com)
+// Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -42,7 +42,7 @@ class Window;
 ////////////////////////////////////////////////////////////
 class SFML_WINDOW_API Touch
 {
-public :
+public:
 
     ////////////////////////////////////////////////////////////
     /// \brief Check if a touch event is currently down
@@ -71,7 +71,7 @@ public :
     /// \brief Get the current position of a touch in window coordinates
     ///
     /// This function returns the current touch position
-    /// in global (desktop) coordinates.
+    /// relative to the given window.
     ///
     /// \param finger Finger index
     /// \param relativeTo Reference window
@@ -94,7 +94,7 @@ public :
 ///
 /// sf::Touch provides an interface to the state of the
 /// touches. It only contains static functions, so it's not
-/// meant to be instanciated.
+/// meant to be instantiated.
 ///
 /// This class allows users to query the touches state at any
 /// time and directly, without having to deal with a window and

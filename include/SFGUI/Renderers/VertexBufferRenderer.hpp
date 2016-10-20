@@ -1,20 +1,30 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/Renderer.hpp>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+#include <SFML/System/Vector2.hpp>
+
+namespace sf {
+class Color;
+}
 
 namespace sfg {
+
+namespace priv {
+struct RendererBatch;
+}
 
 /** SFGUI Vertex Buffer renderer.
  */
 class SFGUI_API VertexBufferRenderer : public Renderer {
 	public:
-		/** Ctor.
+		typedef std::shared_ptr<VertexBufferRenderer> Ptr;
+		typedef std::shared_ptr<const VertexBufferRenderer> PtrConst;
+
+		/** Create VertexBufferRenderer.
+		 * @return VertexBufferRenderer.
 		 */
-		VertexBufferRenderer();
+		static Ptr Create();
 
 		/** Dtor.
 		 */
@@ -24,6 +34,21 @@ class SFGUI_API VertexBufferRenderer : public Renderer {
 		 * @return true if using a Vertex Buffer Renderer is supported.
 		 */
 		static bool IsAvailable();
+
+		/** Draw the GUI to an sf::Window.
+		 * @param target sf::Window to draw to.
+		 */
+		void Display( sf::Window& target ) const override;
+
+		/** Draw the GUI to an sf::RenderWindow.
+		 * @param target sf::RenderWindow to draw to.
+		 */
+		void Display( sf::RenderWindow& target ) const override;
+
+		/** Draw the GUI to an sf::RenderTexture.
+		 * @param target sf::RenderTexture to draw to.
+		 */
+		void Display( sf::RenderTexture& target ) const override;
 
 		/** Enable and select alpha testing threshold.
 		 * @param alpha_threshold Threshold at which fragments will get discarded if their alpha value is less than or equal to. Set to 0.f to disable.
@@ -40,41 +65,45 @@ class SFGUI_API VertexBufferRenderer : public Renderer {
 		 */
 		void TuneUseFBO( bool enable );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 	protected:
-		virtual void InvalidateImpl( unsigned char datasets ) override;
-		virtual void InvalidateWindow() override;
-		virtual void DisplayImpl() const override;
+		/** Ctor.
+		 */
+		VertexBufferRenderer();
+
+		void InvalidateImpl( unsigned char datasets ) override;
 
 	private:
+		void DisplayImpl() const override;
+
 		void InvalidateVBO( unsigned char datasets );
 
 		void RefreshVBO();
 
-		void SetupFBO( unsigned int width, unsigned int height );
+		void SetupFBO( int width, int height );
 
 		void DestroyFBO();
 
 		std::vector<sf::Vector2f> m_vertex_data;
 		std::vector<sf::Color> m_color_data;
 		std::vector<sf::Vector2f> m_texture_data;
-		std::vector<GLuint> m_index_data;
+		std::vector<unsigned int> m_index_data;
 
-		std::vector<Batch> m_batches;
+		std::vector<priv::RendererBatch> m_batches;
 
-		GLuint m_frame_buffer;
-		GLuint m_frame_buffer_texture;
+		unsigned int m_frame_buffer;
+		unsigned int m_frame_buffer_texture;
 
-		GLuint m_display_list;
+		unsigned int m_display_list;
 
-		GLuint m_vertex_vbo;
-		GLuint m_color_vbo;
-		GLuint m_texture_vbo;
-		GLuint m_index_vbo;
+		unsigned int m_vertex_vbo;
+		unsigned int m_color_vbo;
+		unsigned int m_texture_vbo;
+		unsigned int m_index_vbo;
 
-		GLsizei m_last_vertex_count;
-		GLsizei m_last_index_count;
+		int m_last_vertex_count;
+		int m_last_index_count;
 
 		float m_alpha_threshold;
 
@@ -87,8 +116,6 @@ class SFGUI_API VertexBufferRenderer : public Renderer {
 
 		bool m_vbo_supported;
 		bool m_fbo_supported;
-
-		static bool m_glew_initialized;
 };
 
 }

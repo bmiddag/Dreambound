@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/ResourceLoader.hpp>
+
 #include <memory>
 
 namespace sfg {
@@ -11,9 +11,9 @@ namespace sfg {
  */
 class SFGUI_API FileResourceLoader : public ResourceLoader {
 	public:
-		virtual std::shared_ptr<const sf::Font> LoadFont( const std::string& path ) const override;
-		virtual std::shared_ptr<const sf::Image> LoadImage( const std::string& path ) const override;
-		const std::string& GetIdentifier() const;
+		std::shared_ptr<const sf::Font> LoadFont( const std::string& path ) const override;
+		std::shared_ptr<const sf::Image> LoadImage( const std::string& path ) const override;
+		const std::string& GetIdentifier() const override;
 };
 
 }

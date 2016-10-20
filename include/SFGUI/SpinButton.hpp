@@ -1,11 +1,12 @@
 #pragma once
+
 #include <SFGUI/Entry.hpp>
-#include <SFGUI/Adjustment.hpp>
+
 #include <memory>
-#include <SFML/System/String.hpp>
-#include <SFML/System/Clock.hpp>
 
 namespace sfg {
+
+class Adjustment;
 
 /** SpinButton widget
  */
@@ -27,9 +28,9 @@ class SFGUI_API SpinButton : public Entry {
 		 * @param adjustment Adjustment to use.
 		 * @return SpinButton.
 		 */
-		static Ptr Create( Adjustment::Ptr adjustment );
+		static Ptr Create( std::shared_ptr<Adjustment> adjustment );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Check if decrease stepper is pressed
 		 * @return true if decrease stepper is pressed
@@ -44,12 +45,12 @@ class SFGUI_API SpinButton : public Entry {
 		/** Get the Adjustment for this SpinButton widget.
 		 * @return Adjustment for this SpinButton widget.
 		 */
-		Adjustment::Ptr GetAdjustment() const;
+		std::shared_ptr<Adjustment> GetAdjustment() const;
 
 		/** Set the Adjustment for this SpinButton widget.
 		 * @param adjustment New Adjustment.
 		 */
-		void SetAdjustment( Adjustment::Ptr adjustment );
+		void SetAdjustment( std::shared_ptr<Adjustment> adjustment );
 
 		/** Get the value of this SpinButton widget.
 		 * @return Value of this SpinButton widget.
@@ -92,7 +93,7 @@ class SFGUI_API SpinButton : public Entry {
 		 * @param step New step value to use.
 		 * @param digits Digits to display after the decimal point.
 		 */
-		void Configure( Adjustment::Ptr adjustment, float step, unsigned int digits );
+		void Configure( std::shared_ptr<Adjustment> adjustment, float step, unsigned int digits );
 
 		// Signals.
 		static Signal::SignalID OnValueChanged; //!< Fired when the value changes.
@@ -104,19 +105,19 @@ class SFGUI_API SpinButton : public Entry {
 	private:
 		/** Ctor.
 		 */
-		SpinButton( Adjustment::Ptr adjustment );
+		SpinButton();
 
 		void UpdateTextFromAdjustment();
 		void UpdateAdjustmentFromText();
 
-		virtual void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
-		virtual void HandleUpdate( float seconds ) override;
-		virtual void HandleTextEvent( sf::Uint32 character ) override;
-		virtual void HandleKeyEvent( sf::Keyboard::Key key, bool press ) override;
-		virtual void HandleSizeChange() override;
-		virtual void HandleFocusChange( Widget::Ptr focused_widget ) override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		void HandleUpdate( float seconds ) override;
+		void HandleTextEvent( sf::Uint32 character ) override;
+		void HandleKeyEvent( sf::Keyboard::Key key, bool press ) override;
+		void HandleSizeChange() override;
+		void HandleFocusChange( Widget::Ptr focused_widget ) override;
 
-		Adjustment::Ptr m_adjustment;
+		std::shared_ptr<Adjustment> m_adjustment;
 
 		float m_elapsed_time;
 

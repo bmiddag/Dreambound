@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2014 Laurent Gomila (laurent.gom@gmail.com)
+// Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -44,7 +44,7 @@ class Texture;
 ////////////////////////////////////////////////////////////
 class SFML_GRAPHICS_API RenderStates
 {
-public :
+public:
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -147,10 +147,10 @@ public :
 /// on top of each object's transform.
 ///
 /// Most objects, especially high-level drawables, can be drawn
-/// directly without defining render states explicitely -- the
+/// directly without defining render states explicitly -- the
 /// default set of states is ok in most cases.
 /// \code
-/// window.Draw(sprite);
+/// window.draw(sprite);
 /// \endcode
 ///
 /// If you want to use a single specific render state,

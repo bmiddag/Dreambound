@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFGUI/SFGUI.hpp>
+#include <SFGUI/Window.hpp>
+#include <SFGUI/Button.hpp>
+#include <SFGUI/Desktop.hpp>
 #include "Renderer.hpp"
 #include "Object.hpp"
 #include <list>

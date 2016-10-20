@@ -51,7 +51,7 @@ int/*bool*/spPolygon_containsPoint (spPolygon* polygon, float x, float y);
 int/*bool*/spPolygon_intersectsSegment (spPolygon* polygon, float x1, float y1, float x2, float y2);
 
 #ifdef SPINE_SHORT_NAMES
-typedef spPolygon spPolygon;
+typedef spPolygon Polygon;
 #define Polygon_create(...) spPolygon_create(__VA_ARGS__)
 #define Polygon_dispose(...) spPolygon_dispose(__VA_ARGS__)
 #define Polygon_containsPoint(...) spPolygon_containsPoint(__VA_ARGS__)

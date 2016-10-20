@@ -1,7 +1,8 @@
 #pragma once
+
 #include <SFGUI/Widget.hpp>
+
 #include <memory>
-#include <SFML/System.hpp>
 
 namespace sfg {
 
@@ -17,7 +18,7 @@ class SFGUI_API Spinner : public Widget {
 		 */
 		static Ptr Create();
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Start the spinner.
 		 */
@@ -46,7 +47,7 @@ class SFGUI_API Spinner : public Widget {
 		sf::Vector2f CalculateRequisition() override;
 
 	private:
-		void HandleUpdate( float seconds );
+		void HandleUpdate( float seconds ) override;
 
 		float m_elapsed_time;
 

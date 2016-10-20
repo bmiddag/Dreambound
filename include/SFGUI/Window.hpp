@@ -1,11 +1,12 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/Bin.hpp>
-#include <memory>
-#include <SFML/Graphics/Drawable.hpp>
+
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Window/Mouse.hpp>
 #include <SFML/System/String.hpp>
-#include <cstdint>
+#include <SFML/System/Vector2.hpp>
+#include <memory>
 
 namespace sfg {
 
@@ -16,21 +17,22 @@ class SFGUI_API Window : public Bin {
 		typedef std::shared_ptr<Window> Ptr; //!< Shared pointer.
 		typedef std::shared_ptr<const Window> PtrConst; //!< Shared pointer.
 
-		enum Style : std::uint8_t {
+		enum Style : char {
 			NO_STYLE = 0, //!< Transparent window.
 			TITLEBAR = 1 << 0, //!< Titlebar.
 			BACKGROUND = 1 << 1, //!< Background.
 			RESIZE = 1 << 2, //!< Resizable.
 			SHADOW = 1 << 3, //!< Display Shadow.
+			CLOSE = 1 << 4, //!< Display close button.
 			TOPLEVEL = TITLEBAR | BACKGROUND | RESIZE //!< Toplevel window.
 		};
 
 		/** Create window.
 		 * @param style Style the Window should have. Defaults to TopLevel.
 		 */
-		static Ptr Create( std::uint8_t style = Style::TOPLEVEL );
+		static Ptr Create( char style = Style::TOPLEVEL );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Set window title.
 		 * @param title Title.
@@ -51,12 +53,12 @@ class SFGUI_API Window : public Bin {
 		 * Can be a combination of Window::Style values.
 		 * @param style New style.
 		 */
-		void SetStyle( std::uint8_t style );
+		void SetStyle( char style );
 
 		/** Get window style.
 		 * @return Window style.
 		 */
-		std::uint8_t GetStyle() const;
+		char GetStyle() const;
 
 		/** Check if the window has a specific style.
 		 * @param style Style to check.
@@ -64,26 +66,29 @@ class SFGUI_API Window : public Bin {
 		 */
 		bool HasStyle( Style style ) const;
 
+		// Signals.
+		static Signal::SignalID OnCloseButton; //!< Fired when close button is pressed.
+
 	protected:
 		/** Constructor.
 		 * @param style Window style.
 		 */
-		Window( std::uint8_t style );
+		Window( char style );
 
-		virtual std::unique_ptr<RenderQueue> InvalidateImpl() const override;
+		std::unique_ptr<RenderQueue> InvalidateImpl() const override;
 
-		virtual sf::Vector2f CalculateRequisition() override;
+		sf::Vector2f CalculateRequisition() override;
 
 	private:
-		void HandleSizeChange();
-		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y );
-		void HandleMouseMoveEvent( int x, int y );
-		void HandleAdd( Widget::Ptr child );
+		void HandleSizeChange() override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		void HandleMouseMoveEvent( int x, int y ) override;
+		bool HandleAdd( Widget::Ptr child ) override;
 
 		sf::Vector2f m_drag_offset;
 
 		sf::String m_title;
-		std::uint8_t m_style;
+		char m_style;
 
 		bool m_dragging;
 		bool m_resizing;

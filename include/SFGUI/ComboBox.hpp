@@ -1,11 +1,14 @@
 #pragma once
+
 #include <SFGUI/Bin.hpp>
-#include <SFGUI/Scrollbar.hpp>
-#include <memory>
+
 #include <SFML/System/String.hpp>
 #include <vector>
+#include <memory>
 
 namespace sfg {
+
+class Scrollbar;
 
 /** Combobox.
  */
@@ -13,7 +16,8 @@ class SFGUI_API ComboBox : public Bin {
 	public:
 		typedef std::shared_ptr<ComboBox> Ptr; ///< Shared pointer.
 		typedef std::shared_ptr<const ComboBox> PtrConst; ///< Shared pointer to const.
-		typedef std::size_t IndexType; ///< Type for item indices.
+		typedef int IndexType; ///< Type for item indices.
+		typedef std::vector<sf::String>::const_iterator ConstIterator; ///< Iterator type
 
 		static const IndexType NONE; ///< Value for specifying an invalid index/no item selected.
 
@@ -22,19 +26,22 @@ class SFGUI_API ComboBox : public Bin {
 		 */
 		static Ptr Create();
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Get selected item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @return Active item or NONE if none selected.
 		 */
 		IndexType GetSelectedItem() const;
 
 		/** Get highlighted item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @return Highlighted item or NONE if none highlighted.
 		 */
 		IndexType GetHighlightedItem() const;
 
 		/** Select item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @param index Item index.
 		 */
 		void SelectItem( IndexType index );
@@ -45,6 +52,7 @@ class SFGUI_API ComboBox : public Bin {
 		void AppendItem( const sf::String& text );
 
 		/** Insert item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @param index Item index.
 		 * @param text Item text.
 		 */
@@ -56,35 +64,52 @@ class SFGUI_API ComboBox : public Bin {
 		void PrependItem( const sf::String& text );
 
 		/** Change item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @param index Item index.
 		 * @param text Item text.
 		 */
 		void ChangeItem( IndexType index, const sf::String& text );
 
 		/** Remove item.
+		 * Indices lie in the range [0, GetItemCount() - 1].
 		 * @param index Item index.
 		 */
 		void RemoveItem( IndexType index );
+
+		/** Clear all items.
+		 */
+		void Clear();
+
+		/** Get a const iterator pointing to the first item.
+		 * This will be equal to End() if the ComboBox contains no items.
+		 */
+		ConstIterator Begin() const;
+
+		/** Get a const iterator pointing to one past the last item.
+		 * This will be equal to Begin() if the ComboBox contains no items.
+		 */
+		ConstIterator End() const;
 
 		/** Get text of selected item.
 		 * @return Text of selected item or empty if none selected.
 		 */
 		const sf::String& GetSelectedText() const;
 
-		/** Get item count.
+		/** Get the number of items in this ComboBox.
 		 * @return Item count.
 		 */
 		IndexType GetItemCount() const;
 
-		/** Get number of items that are displayed at once when popup is opened.
-		 * @return Number of items that are displayed at once when popup is opened.
+		/** Get the number of items that are simultaneously displayed in the drop-down.
+		 * This takes scrolling into consideration when not all items can be displayed on the screen.
+		 * @return Number of items that are simultaneously displayed in the drop-down.
 		 */
-		IndexType GetDisplayedItems() const;
+		IndexType GetDisplayedItemCount() const;
 
-		/** Get index of the first item to be displayed in the popup.
-		 * @return Get index of the first item to be displayed in the popup.
+		/** Get index of the first item to be displayed in the drop-down.
+		 * @return Get index of the first item to be displayed in the drop-down.
 		 */
-		IndexType GetStartItemIndex() const;
+		IndexType GetDisplayedItemStart() const;
 
 		/** Get text of specific item.
 		 * @param index Item index.
@@ -92,14 +117,14 @@ class SFGUI_API ComboBox : public Bin {
 		 */
 		const sf::String& GetItem( IndexType index ) const;
 
-		/** Is the popup being shown?
-		 * @return true if the popup is being shown.
+		/** Is the drop-down being shown?
+		 * @return true if the drop-down is being shown.
 		 */
-		bool IsPoppedUp() const;
+		bool IsDropDownDisplayed() const;
 
 		// Signals.
 		static Signal::SignalID OnSelect; //!< Fired when an entry is selected.
-		static Signal::SignalID OnOpen; //!< Fired when the popup is opened.
+		static Signal::SignalID OnOpen; //!< Fired when the drop-down is opened.
 
 	protected:
 		ComboBox();
@@ -108,21 +133,30 @@ class SFGUI_API ComboBox : public Bin {
 		sf::Vector2f CalculateRequisition() override;
 
 	private:
-		virtual void HandleMouseEnter( int x, int y );
-		virtual void HandleMouseLeave( int x, int y );
-		virtual void HandleMouseMoveEvent( int x, int y ) override;
-		virtual void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
-		virtual void HandleStateChange( State old_state ) override;
-		virtual void HandleUpdate( float seconds ) override;
+		void HandleMouseEnter( int x, int y ) override;
+		void HandleMouseLeave( int x, int y ) override;
+		void HandleMouseMoveEvent( int x, int y ) override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		void HandleStateChange( State old_state ) override;
+		void HandleUpdate( float seconds ) override;
 		void ChangeStartEntry();
 
-		Scrollbar::Ptr m_scrollbar;
+		std::shared_ptr<Scrollbar> m_scrollbar;
 
-		bool m_active;
 		IndexType m_active_item;
 		IndexType m_highlighted_item;
 		std::vector<sf::String> m_entries;
 		IndexType m_start_entry;
 };
+
+/** Get a const iterator pointing to the first item of the ComboBox.
+ * This will be equal to end() if the ComboBox contains no items.
+ */
+ComboBox::ConstIterator begin( const ComboBox& combo_box );
+
+/** Get a const iterator pointing to one past the last item of the ComboBox.
+ * This will be equal to begin() if the ComboBox contains no items.
+ */
+ComboBox::ConstIterator end( const ComboBox& combo_box );
 
 }

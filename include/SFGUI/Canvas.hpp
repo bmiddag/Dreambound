@@ -1,10 +1,23 @@
 #pragma once
-#include <SFGUI/Config.hpp>
+
 #include <SFGUI/Widget.hpp>
-#include <SFGUI/RendererViewport.hpp>
+
+#include <SFML/Graphics/PrimitiveType.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
 #include <memory>
 
+namespace sf {
+class Vertex;
+class RenderTexture;
+class Drawable;
+class Shader;
+class View;
+}
+
 namespace sfg {
+
+class RendererViewport;
 
 /** Canvas.
  */
@@ -57,11 +70,21 @@ class SFGUI_API Canvas : public Widget {
 		 */
 		void Draw( const sf::Vertex* vertices, unsigned int vertex_count, sf::PrimitiveType type, const sf::RenderStates& states = sf::RenderStates::Default );
 
-		virtual const std::string& GetName() const override;
+		/** Set the sf::View that the canvas should use when performing SFML drawing.
+		 * @param view The sf::View that the canvas should when performing SFML drawing.
+		 */
+		void SetView( const sf::View& view );
+
+		/** Get the sf::View that the canvas uses when performing SFML drawing.
+		 * @return The sf::View that the canvas uses when performing SFML drawing.
+		 */
+		sf::View GetView() const;
+
+		const std::string& GetName() const override;
 
 		/** Handle changing of absolute position
 		 */
-		virtual void HandleAbsolutePositionChange() override;
+		void HandleAbsolutePositionChange() override;
 
 		/** Force a redraw of the canvas.
 		 * This will inform the Renderer to update the GUI with the current canvas contents.
@@ -71,20 +94,30 @@ class SFGUI_API Canvas : public Widget {
 	protected:
 		Canvas( bool depth );
 
-		virtual sf::Vector2f CalculateRequisition() override;
+		sf::Vector2f CalculateRequisition() override;
 
-		virtual void HandleSizeChange() override;
+		void HandleSizeChange() override;
 
-		virtual std::unique_ptr<RenderQueue> InvalidateImpl() const override;
+		std::unique_ptr<RenderQueue> InvalidateImpl() const override;
 
 	private:
 		void DrawRenderTexture();
 
+		void SetupVBO();
+		void SetupVAO();
+		void SetupShader();
+
 		std::shared_ptr<Signal> m_custom_draw_callback;
 		std::shared_ptr<RendererViewport> m_custom_viewport;
 		std::shared_ptr<sf::RenderTexture> m_render_texture;
+		std::unique_ptr<sf::Shader> m_shader;
+		unsigned int m_vertex_location = 0;
+		unsigned int m_texture_coordinate_location = 0;
 
-		GLuint m_display_list;
+		unsigned int m_display_list = 0;
+
+		unsigned int m_vbo = 0;
+		unsigned int m_vao = 0;
 
 		bool m_depth;
 		bool m_resize;

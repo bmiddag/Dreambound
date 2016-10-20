@@ -1,8 +1,9 @@
 #pragma once
+
 #include <SFGUI/Container.hpp>
+
 #include <memory>
-#include <list>
-#include <cstdint>
+#include <deque>
 
 namespace sfg {
 
@@ -16,7 +17,7 @@ class SFGUI_API Box : public Container {
 
 		/** Box orientation.
 		 */
-		enum class Orientation : std::uint8_t {
+		enum class Orientation : char {
 			HORIZONTAL = 0, //!< Arrange horizontally.
 			VERTICAL //!< Arrange vertically.
 		};
@@ -28,7 +29,7 @@ class SFGUI_API Box : public Container {
 		 */
 		static Ptr Create( Orientation orientation = Orientation::HORIZONTAL, float spacing = 0.f );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Add a widget to the end of the box.
 		 * Alias to PackEnd(...) for backward compatibility.
@@ -76,7 +77,7 @@ class SFGUI_API Box : public Container {
 
 	private:
 		struct ChildInfo {
-			Widget::Ptr widget;
+			Widget* widget;
 			bool expand;
 			bool fill;
 
@@ -84,17 +85,17 @@ class SFGUI_API Box : public Container {
 			bool operator==( const ChildInfo& rhs ) const;
 		};
 
-		typedef std::list<ChildInfo> ChildrenCont;
+		typedef std::deque<ChildInfo> ChildrenCont;
 
 		Box( Orientation orientation = Orientation::HORIZONTAL, float spacing = 0.f );
 
-		void HandleAdd( Widget::Ptr child );
-		void HandleRemove( Widget::Ptr child );
-		void HandleSizeChange();
-		void HandleRequisitionChange();
+		bool HandleAdd( Widget::Ptr child ) override;
+		void HandleRemove( Widget::Ptr child ) override;
+		void HandleSizeChange() override;
+		void HandleRequisitionChange() override;
 
 		void AllocateChildren() const;
-		bool IsChildInteresting( sfg::Widget::PtrConst child ) const;
+		bool IsChildInteresting( Widget* child ) const;
 
 		ChildrenCont m_box_children;
 		float m_spacing;

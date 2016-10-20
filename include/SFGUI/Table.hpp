@@ -1,13 +1,13 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
-#include <SFGUI/TableCell.hpp>
-#include <SFGUI/TableOptions.hpp>
 #include <SFGUI/Container.hpp>
-#include <memory>
+#include <SFGUI/TableOptions.hpp>
+#include <SFGUI/TableCell.hpp>
 
 #include <list>
 #include <vector>
+#include <memory>
+#include <cstdint>
 
 namespace sfg {
 
@@ -32,7 +32,7 @@ class SFGUI_API Table : public Container {
 		 */
 		static Ptr Create();
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Attach widget to table.
 		 * @param widget Widget to attach.
@@ -65,6 +65,11 @@ class SFGUI_API Table : public Container {
 		 */
 		void SetRowSpacings( float spacing );
 
+	protected:
+		/** Ctor.
+		 */
+		Table() = default;
+
 	private:
 		typedef std::list<priv::TableCell> TableCellList;
 		typedef std::vector<priv::TableOptions> TableOptionsArray;
@@ -73,9 +78,9 @@ class SFGUI_API Table : public Container {
 		void UpdateRequisitions();
 		void AllocateChildren();
 
-		virtual void HandleSizeChange() override;
-		virtual void HandleRequisitionChange() override;
-		virtual void HandleRemove( Widget::Ptr child ) override;
+		void HandleSizeChange() override;
+		void HandleRequisitionChange() override;
+		void HandleRemove( Widget::Ptr child ) override;
 
 		TableCellList m_cells;
 		TableOptionsArray m_columns;

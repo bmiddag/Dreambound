@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/ToggleButton.hpp>
 
 #include <memory>
@@ -19,12 +18,16 @@ class SFGUI_API CheckButton : public ToggleButton {
 		 */
 		static Ptr Create( const sf::String& label );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 	protected:
+		/** Ctor.
+		 */
+		CheckButton() = default;
+
 		std::unique_ptr<RenderQueue> InvalidateImpl() const override;
-		virtual sf::Vector2f CalculateRequisition() override;
-		void HandleSizeChange();
+		sf::Vector2f CalculateRequisition() override;
+		void HandleSizeChange() override;
 };
 
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SFGUI/Config.hpp>
 #include <SFGUI/Container.hpp>
+
 #include <memory>
 
 namespace sfg {
@@ -19,7 +19,7 @@ class SFGUI_API Bin : public Container {
 		Widget::Ptr GetChild() const;
 
 	protected:
-		virtual void HandleAdd( Widget::Ptr child ) override;
+		bool HandleAdd( Widget::Ptr child ) override;
 };
 
 }

@@ -4,8 +4,6 @@
 #include <SFGUI/Context.hpp>
 #include <SFGUI/Engine.hpp>
 
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/View.hpp>
 #include <memory>
 #include <string>
 #include <deque>
@@ -102,7 +100,7 @@ class SFGUI_API Desktop {
 		void BringToFront( std::shared_ptr<const Widget> child );
 
 	private:
-		typedef std::deque<std::shared_ptr<Widget> > WidgetsList;
+		typedef std::deque<std::shared_ptr<Widget>> WidgetsList;
 
 		void SendFakeMouseMoveEvent( std::shared_ptr<Widget> widget, int x = -1337, int y = -1337 ) const;
 		void RecalculateWidgetLevels();

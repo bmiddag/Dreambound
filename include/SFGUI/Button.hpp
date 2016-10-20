@@ -1,10 +1,13 @@
 #pragma once
+
 #include <SFGUI/Bin.hpp>
-#include <SFGUI/Image.hpp>
-#include <memory>
+
 #include <SFML/System/String.hpp>
+#include <memory>
 
 namespace sfg {
+
+class Image;
 
 /** Pushbutton.
  */
@@ -19,7 +22,7 @@ class SFGUI_API Button : public Bin {
 		 */
 		static Ptr Create( const sf::String& label = L"" );
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Set label.
 		 * @param label Label.
@@ -34,31 +37,35 @@ class SFGUI_API Button : public Bin {
 		/** Set Image of the button.
 		 * @param image Image of the button.
 		 */
-		void SetImage( Image::Ptr image );
+		void SetImage( std::shared_ptr<Image> image );
 
 		/** Get contained Image.
 		 * @return Contained Image.
 		 */
-		const Image::Ptr GetImage() const;
+		std::shared_ptr<const Image> GetImage() const;
 
 		/** Clear Image of the button.
 		 */
 		void ClearImage();
 
 	protected:
-		virtual std::unique_ptr<RenderQueue> InvalidateImpl() const override;
-		virtual sf::Vector2f CalculateRequisition() override;
+		/** Ctor.
+		 */
+		Button() = default;
 
-		virtual void HandleAdd( Widget::Ptr child ) override;
+		std::unique_ptr<RenderQueue> InvalidateImpl() const override;
+		sf::Vector2f CalculateRequisition() override;
 
-		void HandleSizeChange();
+		bool HandleAdd( Widget::Ptr child ) override;
 
-		virtual void HandleStateChange( State old_state ) override;
+		void HandleSizeChange() override;
+
+		void HandleStateChange( State old_state ) override;
 
 	private:
-		void HandleMouseEnter( int x, int y );
-		void HandleMouseLeave( int x, int y );
-		virtual void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		void HandleMouseEnter( int x, int y ) override;
+		void HandleMouseLeave( int x, int y ) override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
 		void AllocateChild();
 
 		sf::String m_label;

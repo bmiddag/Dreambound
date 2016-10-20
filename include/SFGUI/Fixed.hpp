@@ -1,7 +1,8 @@
 #pragma once
-#include <SFGUI/Container.hpp>
-#include <memory>
 
+#include <SFGUI/Container.hpp>
+
+#include <memory>
 #include <map>
 
 namespace sfg {
@@ -18,7 +19,7 @@ class SFGUI_API Fixed : public Container {
 		 */
 		static Ptr Create();
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Add a widget to this fixed at given position.
 		 * @param widget Widget to add.
@@ -33,13 +34,17 @@ class SFGUI_API Fixed : public Container {
 		void Move( Widget::Ptr widget, const sf::Vector2f& position );
 
 	protected:
-		virtual sf::Vector2f CalculateRequisition() override;
+		/** Ctor.
+		 */
+		Fixed() = default;
+
+		sf::Vector2f CalculateRequisition() override;
 
 	private:
 		typedef std::map<Widget::Ptr, sf::Vector2f> ChildrenPositionMap;
 
-		void HandleAdd( Widget::Ptr child );
-		void HandleRemove( Widget::Ptr child );
+		bool HandleAdd( Widget::Ptr child ) override;
+		void HandleRemove( Widget::Ptr child ) override;
 
 		ChildrenPositionMap m_children_position_map;
 };

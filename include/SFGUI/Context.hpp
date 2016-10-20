@@ -1,14 +1,17 @@
 #pragma once
 
 #include <SFGUI/Config.hpp>
+
 #include <memory>
-#include <SFGUI/Engine.hpp>
-#include <SFGUI/Engines/BREW.hpp>
 
 namespace sfg {
 
 class Engine;
 class Widget;
+
+namespace eng {
+class BREW;
+}
 
 /** GUI context.
  * A context saves several semi-global information for widgets, such as the
@@ -75,9 +78,6 @@ class SFGUI_API Context {
 		std::shared_ptr<Widget> GetActiveWidget() const;
 
 	private:
-		static Context* m_active_context;
-		static std::shared_ptr<eng::BREW> m_default_engine;
-
 		Engine* m_engine;
 		std::weak_ptr<Widget> m_active_widget;
 };

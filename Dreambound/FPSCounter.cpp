@@ -1,7 +1,7 @@
 #include "FPSCounter.hpp"
 
 FPSCounter::FPSCounter(sf::Color color) {
-	fpsText.setColor(color);
+	fpsText.setFillColor(color);
 	if (!testFont.loadFromFile("data/arial.ttf")) {
 		// moeitemeter += 36
 	}
@@ -18,7 +18,7 @@ void FPSCounter::endStep() {
 }
 
 void FPSCounter::render(sf::RenderWindow* canvas) {
-	canvas->draw(fpsText);
+	//canvas->draw(fpsText);
 }
 
 unsigned char FPSCounter::getEvents() {

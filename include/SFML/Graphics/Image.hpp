@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2014 Laurent Gomila (laurent.gom@gmail.com)
+// Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -45,7 +45,7 @@ class InputStream;
 ////////////////////////////////////////////////////////////
 class SFML_GRAPHICS_API Image
 {
-public :
+public:
 
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
@@ -76,7 +76,7 @@ public :
     ///
     /// The \a pixel array is assumed to contain 32-bits RGBA pixels,
     /// and have the given \a width and \a height. If not, this is
-    /// an undefined behaviour.
+    /// an undefined behavior.
     /// If \a pixels is null, an empty image is created.
     ///
     /// \param width  Width of the image
@@ -193,7 +193,7 @@ public :
     /// \param destX      X coordinate of the destination position
     /// \param destY      Y coordinate of the destination position
     /// \param sourceRect Sub-rectangle of the source image to copy
-    /// \param applyAlpha Should the copy take in account the source transparency?
+    /// \param applyAlpha Should the copy take into account the source transparency?
     ///
     ////////////////////////////////////////////////////////////
     void copy(const Image& source, unsigned int destX, unsigned int destY, const IntRect& sourceRect = IntRect(0, 0, 0, 0), bool applyAlpha = false);
@@ -203,7 +203,7 @@ public :
     ///
     /// This function doesn't check the validity of the pixel
     /// coordinates, using out-of-range values will result in
-    /// an undefined behaviour.
+    /// an undefined behavior.
     ///
     /// \param x     X coordinate of pixel to change
     /// \param y     Y coordinate of pixel to change
@@ -219,7 +219,7 @@ public :
     ///
     /// This function doesn't check the validity of the pixel
     /// coordinates, using out-of-range values will result in
-    /// an undefined behaviour.
+    /// an undefined behavior.
     ///
     /// \param x X coordinate of pixel to get
     /// \param y Y coordinate of pixel to get
@@ -258,7 +258,7 @@ public :
     ////////////////////////////////////////////////////////////
     void flipVertically();
 
-private :
+private:
 
     ////////////////////////////////////////////////////////////
     // Member data

@@ -1,8 +1,9 @@
 #pragma once
+
 #include <SFGUI/Container.hpp>
+
 #include <memory>
 #include <deque>
-#include <cstdint>
 
 namespace sfg {
 
@@ -16,7 +17,7 @@ class SFGUI_API Notebook : public Container {
 
 		/** Tab Position
 		 */
-		enum class TabPosition : std::uint8_t {
+		enum class TabPosition : char {
 			TOP = 0,
 			BOTTOM,
 			LEFT,
@@ -28,7 +29,7 @@ class SFGUI_API Notebook : public Container {
 		 */
 		static Ptr Create();
 
-		virtual const std::string& GetName() const override;
+		const std::string& GetName() const override;
 
 		/** Appends a new page at the end of the Notebook.
 		 * @param child Widget in the new page.
@@ -168,6 +169,9 @@ class SFGUI_API Notebook : public Container {
 		 */
 		bool IsBackwardScrollPrelight() const;
 
+		// Signals.
+		static Signal::SignalID OnTabChange; //!< Fired when current tab is changed.
+
 	protected:
 		/** Ctor.
 		 */
@@ -187,13 +191,13 @@ class SFGUI_API Notebook : public Container {
 
 		typedef std::deque<ChildLabelPair> ChildrenList;
 
-		void HandleMouseMoveEvent( int x, int y );
-		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y );
-		void HandleAdd( Widget::Ptr child );
-		void HandleRemove( Widget::Ptr child );
-		void HandleSizeChange();
-		void HandleUpdate( float seconds );
-		void HandleGlobalVisibilityChange();
+		void HandleMouseMoveEvent( int x, int y ) override;
+		void HandleMouseButtonEvent( sf::Mouse::Button button, bool press, int x, int y ) override;
+		bool HandleAdd( Widget::Ptr child ) override;
+		void HandleRemove( Widget::Ptr child ) override;
+		void HandleSizeChange() override;
+		void HandleUpdate( float seconds ) override;
+		void HandleGlobalVisibilityChange() override;
 
 		void RecalculateSize();
 
