@@ -46,22 +46,27 @@ void SpineTest::step() {
 	float prevHeadX = headBone.get()->getBone()->worldX + x;
 	float prevHeadY = headBone.get()->getBone()->worldY + y;
 
+	float speed = 9;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+		speed = 13;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		//x -= 12;
+		x -= speed;
 		prevHeadX += 12;
 		skeleton->flipX = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		//x += 12;
+		x += speed;
 		prevHeadX -= 12;
 		skeleton->flipX = false;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		//y -= 18;
+		y -= 18;
 		prevHeadY += 18;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		//y += 18;
+		y += 18;
 		prevHeadY -= 18;
 	}
 
