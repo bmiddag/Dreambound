@@ -9,6 +9,7 @@ class SpineTest : public Object {
 private:
 	enum Anim {
 		Idle,
+		Jog,
 		Run
 	};
 

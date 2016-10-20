@@ -19,7 +19,8 @@ SpineTest::SpineTest() {
 
 	// Configure animations
 	animMap[Anim::Idle] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_idle"), true, 0.75f, 0.f, 60.f);
-	animMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 14.f/8.f, 30.f, 130.f);
+	animMap[Anim::Jog] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_jog"), true, 7.f/4.f, 30.f, 130.f);
+	animMap[Anim::Run] = std::make_unique<spine::Animation>(spSkeletonData_findAnimation(skeletonData, "anm_run"), true, 9.f / 4.f, 30.f, 130.f);
 
 	// Configure hair map
 	wind = sf::Vector2f(0.f, 0.f);
@@ -72,7 +73,11 @@ void SpineTest::step() {
 
 	// Handle animations
 	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
-		if (drawable->getAnimation() != animMap[Anim::Run].get()) drawable->setAnimation(animMap[Anim::Run].get(), 10.f, spine::BlendType::Linear);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+			drawable->setAnimation(animMap[Anim::Run].get(), 10.f, spine::BlendType::Linear);
+		} else if (drawable->getAnimation() != animMap[Anim::Jog].get()) {
+			drawable->setAnimation(animMap[Anim::Jog].get(), 10.f, spine::BlendType::Linear);
+		}
 	} else {
 		std::cout << headBone.get()->getBone()->worldRotation << "\n";
 		if (drawable->getAnimation() != animMap[Anim::Idle].get()) drawable->setAnimation(animMap[Anim::Idle].get(), 40.f, spine::BlendType::Linear);
